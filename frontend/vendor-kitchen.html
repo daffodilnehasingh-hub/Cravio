@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kitchen Display | Cravio</title><link rel="stylesheet" href="css/auth.css"><link rel="stylesheet" href="css/vendor-kitchen.css">  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body><main class="kitchen">
+<header><a class="brand" href="index.html">cravio<span>.</span></a><nav><a href="vendor-dashboard.html">Vendor workspace</a> · <a href="outlet-management.html">Menu studio</a></nav></header>
+<section class="kitchen-hero"><div><span class="eyebrow">CRAVIO · KITCHEN OPERATIONS</span><h1>Kitchen display</h1><p>Accept incoming orders, start preparation and mark dishes ready.</p></div><div class="kitchen-icon"><span data-icon="flame" data-size="52"></span></div></section>
+<section class="kitchen-controls"><div><label for="outletFilter">Outlet</label><select id="outletFilter"><option value="all">All assigned outlets</option></select></div><div><label for="queueFilter">Queue</label><select id="queueFilter"><option value="active">Active kitchen orders</option><option value="placed">New orders</option><option value="accepted">Accepted</option><option value="preparing">Preparing</option><option value="ready">Ready</option></select></div><button id="refresh" class="btn btn-sm"><span class="ci" data-icon="zap" data-size="14"></span>Refresh queue</button><span id="lastUpdated">Loading…</span></section>
+<div id="message" role="status"></div><section id="queue" class="queue"><div class="loading">Loading kitchen orders…</div></section>
+<footer>Kitchen queue refreshes automatically every 20 seconds. Only orders from your assigned outlets are shown.</footer>
+</main><script src="js/vendor-kitchen.js"></script>
+</body></html>

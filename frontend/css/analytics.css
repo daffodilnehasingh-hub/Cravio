@@ -1,0 +1,52 @@
+*{box-sizing:border-box}
+body{margin:0;background:#fff8f4;color:#28211e;font-family:Arial,Helvetica,sans-serif}
+.analytics-shell{width:min(1180px,calc(100% - 36px));margin:0 auto;padding:26px 0 42px}
+.analytics-header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #eee1d9;padding-bottom:12px}
+.analytics-header .brand{margin:0}
+.header-actions{display:flex;align-items:center;gap:14px;color:#766e69;font-size:13px}
+.header-actions button,.analytics-controls button{border:0;border-radius:9px;padding:10px 14px;background:#f36b32;color:white;font-weight:700;cursor:pointer}
+.analytics-intro{padding:28px 0 18px}
+.analytics-intro h1{margin:0;font-size:32px;letter-spacing:-1px}
+.analytics-intro>p:not(.eyebrow){color:#77716d;font-size:14px}
+.analytics-controls{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:20px}
+.analytics-controls label{font-size:13px;font-weight:700}
+.analytics-controls select{padding:10px 12px;border:1px solid #e8ddd6;border-radius:9px;background:white;font:inherit}
+#analyticsMessage{min-height:18px;color:#a53b20;font-size:13px}
+.metric-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:14px 0 18px}
+.metric-card{background:#fff;border:1px solid #f0e6e0;border-radius:15px;padding:18px;min-height:105px;box-shadow:0 5px 20px rgba(87,48,25,.035)}
+.metric-card span{display:block;color:#817872;font-size:12px;margin-bottom:12px}
+.metric-card strong{font-size:25px;letter-spacing:-.5px}
+.analytics-grid{display:grid;grid-template-columns:1.35fr 1fr;gap:16px}
+.analytics-panel{background:white;border:1px solid #f0e6e0;border-radius:16px;padding:20px;min-width:0;box-shadow:0 5px 20px rgba(87,48,25,.035)}
+.panel-heading h2{margin:0;font-size:17px}
+.panel-heading p{margin:6px 0 18px;color:#8a817b;font-size:12px}
+.daily-chart{display:flex;align-items:flex-end;gap:7px;min-height:210px;overflow-x:auto;padding:8px 0 2px}
+.day-column{min-width:22px;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:190px;gap:7px}
+.day-value{font-size:9px;color:#817872;white-space:nowrap;transform:rotate(-40deg);height:20px}
+.day-bar-wrap{height:130px;width:100%;display:flex;align-items:flex-end;justify-content:center}
+.day-bar{width:min(22px,80%);min-height:2px;border-radius:5px 5px 2px 2px;background:linear-gradient(180deg,#ff9b68,#f36b32)}
+.day-label{font-size:9px;color:#8a817b;white-space:nowrap}
+.status-breakdown,.rank-list,.outlet-list{display:grid;gap:12px}
+.status-row,.rank-row,.outlet-row{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px}
+.status-name,.rank-name,.outlet-name{color:#554b45;min-width:0;overflow-wrap:anywhere}
+.status-count,.rank-value,.outlet-value{font-weight:800;white-space:nowrap}
+.status-track,.rank-track{height:6px;border-radius:9px;background:#f4eee9;overflow:hidden;margin-top:7px}
+.status-fill,.rank-fill{height:100%;border-radius:9px;background:#f36b32}
+.rank-main{flex:1;min-width:0}
+.rank-sub,.outlet-sub{display:block;color:#918780;font-size:11px;margin-top:4px}
+.empty-note{color:#8a817b;font-size:13px;padding:12px 0}
+.analytics-footnote{color:#8a817b;font-size:11px;line-height:1.6;margin:18px 2px}
+.back-dashboard a{color:#e85f28;font-weight:700;text-decoration:none;font-size:13px}
+@media(max-width:800px){.metric-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.analytics-grid{grid-template-columns:1fr}}
+@media(max-width:460px){.metric-card{padding:14px}.metric-card strong{font-size:20px}.analytics-intro h1{font-size:27px}.analytics-panel{padding:15px}.analytics-shell{width:min(100% - 24px,1180px)}}
+
+/* ===== Cravio design-system polish (appended) ===== */
+.icon-flip{transform:rotate(180deg)}
+.metric-card .metric-icon{width:34px;height:34px;margin-bottom:10px;border-radius:var(--r-md);background:var(--c-orange-soft);color:var(--c-orange);display:grid;place-items:center}
+.metric-card strong{font-variant-numeric:tabular-nums}
+.metric-card{transition:transform var(--t-med),box-shadow var(--t-med)}
+.metric-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-1)}
+.analytics-panel{transition:box-shadow var(--t-med)}
+.analytics-panel:hover{box-shadow:var(--shadow-1)}
+.back-dashboard a{display:inline-flex;align-items:center;gap:6px}
+

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Outlet & Menu Manager | Cravio</title><link rel="stylesheet" href="css/auth.css"><link rel="stylesheet" href="css/outlet-management.css">  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body><main class="manager">
+<header><a class="brand" href="index.html">cravio<span>.</span></a><nav><a href="dashboard.html">Dashboard</a> · <a href="inventory.html">Inventory</a></nav></header>
+<section class="hero"><div><p class="eyebrow">VENDOR WORKSPACE · PHASE 34</p><h1>Menu studio</h1><p class="muted">Edit dishes, keep images tidy, and update prices in batches.</p></div><div class="hero-mark"><span data-icon="utensils" data-size="52"></span></div></section>
+<section class="panel admin-create"><h2>Create outlet <small>Admin only</small></h2><form id="outletForm" class="fields"><input name="outletId" placeholder="Unique outlet ID" required><input name="name" placeholder="Outlet name" required><select name="type"><option value="restaurant">Restaurant</option><option value="canteen">Canteen</option></select><input name="cuisine" placeholder="Cuisine"><input name="description" placeholder="Description"><input name="image" placeholder="Outlet image URL"><button>Create outlet</button></form></section>
+<div class="section-head"><div><h2>Your outlets</h2><p class="muted">Choose an outlet to manage its menu.</p></div><button class="secondary btn-ghost btn-sm" id="refreshBtn"><span class="ci" data-icon="zap" data-size="14"></span>Refresh</button></div>
+<div id="outletList"><div class="loading">Loading your outlets…</div></div><p id="managerMessage" role="status"></p>
+</main><script src="js/outlet-management.js"></script>
+</body></html>

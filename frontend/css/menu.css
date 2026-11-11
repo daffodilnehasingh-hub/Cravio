@@ -1,0 +1,142 @@
+/* ============================================================
+   menu.css — outlet menu page. Tokens from design-system.css,
+   dark-mode safe (semantic vars only in component rules).
+   ============================================================ */
+
+.cart-header{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);border-radius:99px;padding:9px 14px;background:var(--surface);color:var(--text);font-size:12px;font-weight:800;cursor:pointer;transition:border-color var(--t-fast),color var(--t-fast),transform var(--t-fast)}
+.cart-header:hover{border-color:var(--c-orange);color:var(--c-orange);transform:translateY(-1px)}
+
+.breadcrumb{display:flex;align-items:center;gap:9px;padding-top:24px;color:var(--muted);font-size:11px}
+.breadcrumb a{color:var(--orange);font-weight:700}
+.breadcrumb .cravio-svg{color:var(--muted)}
+
+/* ---------- Sticky outlet bar (info + cart chip) ---------- */
+.outlet-bar{position:sticky;top:78px;z-index:9;display:flex;align-items:center;justify-content:space-between;gap:14px;margin-top:20px;padding:9px 12px 9px 14px;border:1px solid var(--line);border-radius:var(--r-lg);background:color-mix(in srgb, var(--surface) 90%, transparent);backdrop-filter:blur(8px);box-shadow:var(--shadow-1);transition:box-shadow var(--t-fast),border-color var(--t-fast)}
+.outlet-bar:hover{border-color:color-mix(in srgb, var(--c-orange) 30%, var(--line))}
+.outlet-bar-info{display:flex;align-items:center;gap:11px;min-width:0}
+.outlet-bar-info img{width:44px;height:44px;border-radius:var(--r-md);object-fit:cover;background:var(--surface-soft);flex:none}
+.outlet-bar-info div{min-width:0}
+.outlet-bar-info strong{display:block;font-size:13px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.outlet-bar-info small{display:block;margin-top:2px;color:var(--muted);font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.outlet-bar-cart{display:inline-flex;align-items:center;gap:8px;flex:none;min-height:40px;padding:8px 16px;border:1px solid color-mix(in srgb, var(--c-orange) 40%, var(--line));border-radius:99px;color:var(--c-orange);background:var(--c-orange-soft);font:800 11px "DM Sans",sans-serif;cursor:pointer;transition:background var(--t-fast),color var(--t-fast),transform var(--t-fast),box-shadow var(--t-fast)}
+.outlet-bar-cart b{font-size:13px;font-variant-numeric:tabular-nums}
+.outlet-bar-cart small{font-weight:600}
+.outlet-bar-cart strong{font-variant-numeric:tabular-nums}
+.outlet-bar-cart:hover{transform:translateY(-1px);box-shadow:var(--shadow-1)}
+.outlet-bar-cart.has-items{background:var(--c-orange);border-color:var(--c-orange);color:#fff}
+
+/* ---------- Outlet hero ---------- */
+.outlet-hero{display:grid;grid-template-columns:320px 1fr;gap:28px;align-items:center;padding-top:25px;padding-bottom:38px}
+.outlet-cover{height:215px;position:relative;overflow:hidden;border-radius:var(--r-xl);background:var(--surface-soft);border:1px solid var(--line)}
+.outlet-cover img{width:100%;height:100%;object-fit:cover}
+.outlet-cover-tag{position:absolute;left:13px;bottom:13px;padding:7px 10px;border-radius:var(--r-sm);color:#fff;background:var(--c-ink);font-size:9px;font-weight:800}
+.outlet-summary-top{display:flex;justify-content:space-between}
+.open-status{display:inline-flex;align-items:center;gap:6px;color:var(--c-green);font-size:10px;font-weight:700}
+.open-status i{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--c-green);margin-right:5px}
+.outlet-summary h1{margin:8px 0;font:800 34px 'Plus Jakarta Sans';letter-spacing:-1px}
+.outlet-description-large{color:var(--muted);font-size:13px}
+.summary-details,.service-tags{display:flex;flex-wrap:wrap;gap:12px;color:var(--muted);font-size:11px}
+.summary-details .cravio-svg{color:var(--c-orange)}
+.summary-details span{display:inline-flex;align-items:center;gap:5px}
+.service-tags{margin-top:16px;gap:8px}
+.service-tag{display:inline-flex;align-items:center;gap:5px;padding:7px 11px;border-radius:99px;color:var(--c-green);background:var(--c-green-soft);font-size:10px;font-weight:700}
+.service-tag .cravio-svg{color:currentColor}
+.service-tag.unavailable{color:var(--muted);background:var(--surface-soft)}
+
+/* ---------- Layout ---------- */
+.menu-layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:32px;padding:30px 0 120px;border-top:1px solid var(--line)}
+.menu-sidebar{align-self:start;position:sticky;top:150px}
+.menu-search{display:flex;align-items:center;gap:8px;padding:11px;border:1px solid var(--line);border-radius:var(--r-md);background:var(--surface);transition:border-color var(--t-fast),box-shadow var(--t-fast)}
+.menu-search:focus-within{border-color:var(--c-orange);box-shadow:var(--ring)}
+.menu-search .cravio-svg{color:var(--muted)}
+.menu-search input{width:100%;border:0;outline:0;color:var(--text);background:transparent;font-size:12px}
+.menu-sidebar h3{font-size:12px;margin:24px 0 10px}
+.menu-categories{display:grid;gap:5px}
+.menu-category{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:10px 12px;border:0;border-radius:var(--r-sm);color:var(--muted);background:transparent;text-align:left;font-size:12px;font-weight:600;cursor:pointer;transition:color var(--t-fast),background var(--t-fast)}
+.menu-category span:last-child{padding:2px 8px;border-radius:99px;background:var(--surface-soft);color:var(--muted);font-size:10px;font-weight:800;font-variant-numeric:tabular-nums}
+.menu-category.active,.menu-category:hover{color:var(--orange);background:var(--surface-soft);font-weight:800}
+.menu-category.active span:last-child{color:var(--orange);background:color-mix(in srgb, var(--c-orange) 14%, transparent)}
+.diet-filter{margin-top:22px;border-top:1px solid var(--line)}
+.diet-filter label{display:flex;align-items:center;gap:8px;margin:11px 0;color:var(--muted);font-size:11px;cursor:pointer}
+.diet-filter input{accent-color:var(--c-orange)}
+
+.menu-advanced-filters{margin-top:20px;padding-top:14px;border-top:1px solid var(--line);display:grid;gap:10px}
+.menu-advanced-filters h3{margin:0;font-size:12px}
+.menu-advanced-filters label{display:grid;gap:6px;color:var(--muted);font-size:10px}
+.menu-advanced-filters select{width:100%;padding:9px;border:1px solid var(--line);border-radius:var(--r-sm);color:var(--text);background:var(--surface);font-size:11px}
+
+/* ---------- Heading ---------- */
+.menu-heading{display:flex;justify-content:space-between;align-items:end;margin-bottom:18px}
+.menu-heading h2{margin:6px 0 3px;font:800 25px 'Plus Jakarta Sans'}
+.menu-heading p,.menu-note{color:var(--muted);font-size:11px}
+.menu-note{display:inline-flex;align-items:center;gap:5px}
+
+/* ---------- Dish grid: 2-col desktop, 1-col mobile ---------- */
+.menu-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.menu-items[hidden]{display:none}
+.menu-item{min-height:140px;display:grid;grid-template-columns:minmax(0,1fr) 125px;gap:15px;padding:14px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);transition:transform var(--t-med),box-shadow var(--t-med),border-color var(--t-med)}
+.menu-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-2);border-color:color-mix(in srgb, var(--c-orange) 35%, var(--line))}
+.menu-item-copy{display:flex;flex-direction:column;align-items:start;min-width:0}
+.food-type-dot{width:14px;height:14px;border:2px solid currentColor;border-radius:3px;margin-bottom:5px;position:relative;flex:none}
+.food-type-dot:after{content:'';position:absolute;width:5px;height:5px;top:2px;left:2px;border-radius:50%;background:currentColor}
+.food-type-dot.veg{color:var(--c-green)}
+.food-type-dot.nonveg{color:var(--c-red)}
+.menu-item h3{margin:5px 0;font-size:14px}
+.menu-item-description{margin:0 0 7px;color:var(--muted);font-size:10px;line-height:1.5}
+.menu-item-rating{display:inline-flex;align-items:center;gap:4px;color:var(--c-gold);font-size:10px;font-weight:800}
+.menu-item-rating .cravio-svg{color:currentColor}
+.menu-item-price{margin-top:auto;font-size:13px;font-variant-numeric:tabular-nums}
+.menu-item-side{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px}
+.menu-item-side img{width:110px;height:80px;border-radius:var(--r-sm);object-fit:cover;background:var(--surface-soft)}
+
+/* ---------- Add button & quantity steppers ---------- */
+.add-food-button{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-height:32px;padding:7px 14px;border:1px solid color-mix(in srgb, var(--c-orange) 45%, transparent);border-radius:var(--r-sm);color:var(--c-orange);background:var(--c-orange-soft);font-size:10px;font-weight:800;letter-spacing:.5px;cursor:pointer;transition:background var(--t-fast),color var(--t-fast),transform var(--t-fast)}
+.add-food-button:hover{color:#fff;background:var(--c-orange);transform:translateY(-1px)}
+.quantity-control{display:inline-flex;align-items:center;gap:6px;padding:4px;border:1px solid color-mix(in srgb, var(--c-orange) 45%, transparent);border-radius:var(--r-sm);background:var(--c-orange-soft)}
+.quantity-control b{min-width:18px;text-align:center;color:var(--c-orange);font-size:12px;font-variant-numeric:tabular-nums}
+.quantity-control button{display:grid;place-items:center;width:26px;height:26px;border:0;border-radius:6px;color:var(--c-orange);background:transparent;cursor:pointer;transition:background var(--t-fast),color var(--t-fast)}
+.quantity-control button:hover{background:var(--c-orange);color:#fff}
+.cart-line-actions{display:flex;align-items:center;gap:8px;color:var(--c-orange);font-size:11px}
+.cart-line-actions b{min-width:16px;text-align:center;font-variant-numeric:tabular-nums}
+.cart-line-actions button{display:grid;place-items:center;width:24px;height:24px;border:1px solid var(--line);border-radius:6px;color:var(--c-orange);background:transparent;cursor:pointer;transition:background var(--t-fast),color var(--t-fast),border-color var(--t-fast)}
+.cart-line-actions button:hover{background:var(--c-orange);border-color:var(--c-orange);color:#fff}
+
+/* ---------- Empty state ---------- */
+.menu-empty{text-align:center;padding:55px 30px;color:var(--muted);border:1px dashed color-mix(in srgb, var(--c-orange) 30%, var(--line));border-radius:var(--r-lg);background:var(--surface)}
+.menu-empty h3{margin:0 0 6px;color:var(--text);font-size:16px}
+.menu-empty p{margin:0 0 16px;font-size:12px}
+
+/* ---------- Cart bar ---------- */
+.cart-bar{position:fixed;z-index:12;left:50%;bottom:16px;width:min(650px,92%);padding:12px 14px;display:flex;align-items:center;justify-content:space-between;gap:12px;border:1px solid var(--line);border-radius:var(--r-lg);background:var(--surface);box-shadow:var(--shadow-2);transform:translateX(-50%)}
+.cart-bar-info{display:flex;align-items:center;gap:10px;min-width:0}
+.cart-bag{display:grid;place-items:center;padding:10px;border-radius:var(--r-md);background:var(--c-orange-soft);color:var(--c-orange)}
+.cart-bar-info strong,.cart-bar-info small{display:block;font-size:11px}
+.cart-bar-info small{margin-top:3px;color:var(--muted);font-size:10px}
+.cart-bar>button{display:inline-flex;align-items:center;gap:7px;min-height:40px;padding:10px 18px;border:0;border-radius:var(--r-md);color:#fff;background:var(--c-orange);font-size:11px;font-weight:800;cursor:pointer;transition:background var(--t-fast),transform var(--t-fast)}
+.cart-bar>button:hover{background:var(--c-orange-deep);transform:translateY(-1px)}
+
+/* ---------- Cart modal ---------- */
+.cart-modal-backdrop{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:15px;background:rgba(0,0,0,.5)}
+.cart-modal-backdrop[hidden]{display:none}
+.cart-modal{width:min(460px,100%);max-height:85vh;overflow:auto;padding:22px;border-radius:var(--r-xl);color:var(--text);background:var(--surface);box-shadow:var(--shadow-3)}
+.cart-modal-heading{display:flex;justify-content:space-between;align-items:center}
+.cart-modal-heading h2{margin:5px 0;font:800 24px 'Plus Jakarta Sans'}
+.close-cart{display:grid;place-items:center;width:34px;height:34px;border:1px solid var(--line);border-radius:50%;color:var(--text);background:transparent;cursor:pointer;transition:border-color var(--t-fast),color var(--t-fast)}
+.close-cart:hover{border-color:var(--c-red);color:var(--c-red)}
+.cart-outlet-note,.cart-demo-note{color:var(--muted);font-size:11px}
+.cart-lines{display:grid;gap:10px;margin:16px 0}
+.cart-line{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-bottom:10px;border-bottom:1px solid var(--line);font-size:11px}
+.cart-line strong,.cart-line small{display:block}
+.cart-line small{margin-top:4px;color:var(--muted);font-variant-numeric:tabular-nums}
+.cart-total{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-top:1px solid var(--line);font-size:13px}
+.cart-total strong{font-variant-numeric:tabular-nums}
+.checkout-placeholder{display:inline-flex;align-items:center;justify-content:center;gap:7px;width:100%;min-height:42px;margin-top:8px;border:0;border-radius:var(--r-md);color:#fff;background:var(--c-orange);font:800 12px "DM Sans",sans-serif;cursor:pointer;transition:background var(--t-fast)}
+.checkout-placeholder:hover{background:var(--c-orange-deep)}
+
+/* ---------- Responsive ---------- */
+@media(max-width:900px){
+  .menu-items{grid-template-columns:1fr}
+  .outlet-bar{top:66px}
+}
+@media(max-width:760px){.outlet-hero{grid-template-columns:1fr;gap:16px}.outlet-cover{height:185px}.menu-layout{grid-template-columns:1fr;gap:18px}.menu-sidebar{position:static}.menu-categories{display:flex;overflow:auto;padding-bottom:4px}.menu-category{white-space:nowrap}.diet-filter{display:flex;gap:12px;flex-wrap:wrap}.diet-filter h3{width:100%;margin-bottom:0}.outlet-bar-info small{display:none}.outlet-bar-cart small{display:none}}
+@media(max-width:480px){.outlet-summary h1{font-size:27px}.menu-item{grid-template-columns:minmax(0,1fr) 100px;padding:10px;gap:8px}.menu-item-side img{width:92px;height:72px}.menu-item-description{font-size:9px}.menu-heading h2{font-size:21px}}

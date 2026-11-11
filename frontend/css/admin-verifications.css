@@ -1,0 +1,17 @@
+.admin-verify-shell{width:min(100% - 32px,850px)}.admin-verify-card{padding:32px}
+.verification-queue{display:grid;gap:15px}.verification-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(180px,260px);gap:16px;padding:17px;border:1px solid #eee5df;border-radius:14px}
+.verification-card img{width:100%;max-height:230px;object-fit:contain;background:#f7f2ed;border-radius:9px}
+.verification-details strong{display:block;margin-bottom:8px}.verification-details p{margin:5px 0;color:#71675f;font-size:13px}
+.review-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:13px}.review-actions button{margin:0;padding:10px 13px}
+.review-actions .reject{background:#fff0ed;color:#a12b20}
+.review-reason{width:100%;margin-top:9px;padding:10px;border:1px solid #e8ded7;border-radius:8px}
+.queue-empty{padding:22px;border-radius:12px;background:#fff7f1;text-align:center;color:#776b63}
+@media(max-width:620px){.admin-verify-card{padding:23px 18px}.verification-card{grid-template-columns:1fr}}
+
+/* ===== Cravio design-system polish (appended) ===== */
+.icon-flip{transform:rotate(180deg)}
+.queue-empty{display:flex;flex-direction:column;align-items:center;gap:4px}
+.verification-card{background:var(--card,#fff);transition:box-shadow var(--t-med)}
+.verification-card:hover{box-shadow:var(--shadow-1)}
+.back-link{display:inline-flex;align-items:center;gap:6px}
+

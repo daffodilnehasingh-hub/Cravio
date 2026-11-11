@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | Cravio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body>
+  <main class="auth-shell">
+    <a class="brand" href="index.html" aria-label="Cravio home"><span class="brand-mark">C</span><span>cravio<span class="brand-dot">.</span></span></a>
+    <section class="auth-card">
+      <div class="auth-card-icon" aria-hidden="true"><span data-icon="utensils" data-size="24"></span></div>
+      <p class="eyebrow"><span data-icon="sparkles" data-size="12"></span> WELCOME BACK</p>
+      <h1>Login to Cravio</h1>
+      <p class="subtext">Your favourite food is just a few clicks away.</p>
+      <form id="loginForm">
+        <div class="field">
+          <label for="email">Email address</label>
+          <div class="input-wrap">
+            <span class="input-icon" data-icon="mail" data-size="16"></span>
+            <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <span class="input-icon" data-icon="shield-check" data-size="16"></span>
+            <input id="password" name="password" type="password" placeholder="Enter your password" autocomplete="current-password" required>
+            <button type="button" class="input-trailing" id="toggleLoginPassword" aria-label="Show password" aria-pressed="false"><span data-icon="eye" data-size="16"></span></button>
+          </div>
+        </div>
+        <p class="form-message" id="formMessage" role="alert"></p>
+        <button type="submit" id="submitButton">Login</button>
+        <button type="button" class="text-button" id="showForgotPassword">Forgot password?</button>
+      </form>
+      <section id="forgotPasswordPanel" hidden>
+        <h2>Reset your password</h2>
+        <p class="subtext">We'll email you a one-time code to securely reset your password.</p>
+        <form id="requestResetForm">
+          <div class="field">
+            <label for="resetRequestEmail">Email address</label>
+            <div class="input-wrap">
+              <span class="input-icon" data-icon="mail" data-size="16"></span>
+              <input id="resetRequestEmail" type="email" autocomplete="email" required>
+            </div>
+          </div>
+          <p class="form-message" id="resetRequestMessage" role="alert"></p>
+          <button type="submit" id="requestResetButton">Send reset code</button>
+        </form>
+        <form id="resetPasswordForm" hidden>
+          <div class="field">
+            <label for="resetEmail">Email address</label>
+            <div class="input-wrap">
+              <span class="input-icon" data-icon="mail" data-size="16"></span>
+              <input id="resetEmail" type="email" autocomplete="email" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="resetOtp">6-digit reset code</label>
+            <input id="resetOtp" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" class="otp-input" required>
+          </div>
+          <div class="field">
+            <label for="newPassword">New password</label>
+            <div class="input-wrap">
+              <span class="input-icon" data-icon="shield-check" data-size="16"></span>
+              <input id="newPassword" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+              <button type="button" class="input-trailing" id="toggleNewPassword" aria-label="Show password" aria-pressed="false"><span data-icon="eye" data-size="16"></span></button>
+            </div>
+          </div>
+          <div class="field">
+            <label for="confirmNewPassword">Confirm new password</label>
+            <div class="input-wrap">
+              <span class="input-icon" data-icon="shield-check" data-size="16"></span>
+              <input id="confirmNewPassword" type="password" minlength="8" maxlength="128" autocomplete="new-password" required>
+              <button type="button" class="input-trailing" id="toggleConfirmNewPassword" aria-label="Show password" aria-pressed="false"><span data-icon="eye" data-size="16"></span></button>
+            </div>
+          </div>
+          <p class="form-message" id="resetPasswordMessage" role="alert"></p>
+          <button type="submit" id="resetPasswordButton">Reset password</button>
+        </form>
+        <button type="button" class="text-button" id="backToLogin">Back to login</button>
+      </section>
+      <div id="loginVerification" hidden>
+        <div class="panel-note"><span data-icon="shield-check" data-size="16"></span><p class="subtext">Your email is not verified yet. You can request a new code and verify it from the registration page.</p></div>
+        <button type="button" id="loginResendButton" class="secondary-button">Resend verification code</button>
+      </div>
+      <p class="switch-link">New to Cravio? <a href="register.html">Create an account</a></p>
+      <a class="back-link" href="index.html"><span data-icon="arrow-right" data-size="14"></span> Back to home</a>
+    </section>
+    <p class="footnote">Cravio · Good food, good mood.</p>
+  </main>
+  <script src="js/auth.js"></script>
+</body>
+</html>

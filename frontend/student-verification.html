@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Verification | Cravio</title><link rel="stylesheet" href="css/auth.css"><link rel="stylesheet" href="css/student-verification.css">  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body><main class="auth-shell verify-shell">
+<a class="brand" href="index.html">cravio<span>.</span></a>
+<section class="auth-card verify-card">
+<p class="eyebrow"><span class="ci" data-icon="graduation-cap" data-size="14"></span> CRAVIO CAMPUS BENEFITS</p><h1>Verify your student ID</h1>
+<p class="subtext">Submit a clear photo of your valid college ID. An admin will review it before student discounts are enabled.</p>
+<div class="privacy-note"><strong><span class="ci" data-icon="shield-check" data-size="15"></span> Your document is private</strong><p>Your ID image is stored in private cloud storage and is only made available to authorized admins for review. Do not upload unrelated personal documents.</p></div>
+<div class="status-panel" id="verificationStatus">Checking your verification status...</div>
+<form id="verificationForm" enctype="multipart/form-data">
+<label for="studentId">College student ID image</label>
+<input id="studentId" name="studentId" type="file" accept="image/jpeg,image/png,image/webp" required>
+<small>Accepted: JPG, PNG or WEBP · Maximum size: 5 MB</small>
+<div class="preview-wrap" id="previewWrap" hidden><img id="previewImage" alt="Selected student ID preview"></div>
+<p class="form-message" id="formMessage" role="alert"></p>
+<button type="submit" id="submitButton">Submit for verification</button>
+</form>
+<a class="back-link" href="profile.html"><span class="ci" data-icon="arrow-right" data-size="15"></span> Back to my profile</a>
+</section></main><script src="js/student-verification.js"></script>
+</body></html>

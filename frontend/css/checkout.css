@@ -1,0 +1,192 @@
+/* Cravio Phase 4 — checkout (refined to design-system tokens) */
+.secure-label { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 11px; font-weight: 700; }
+.secure-label .cravio-svg { color: var(--c-green); }
+.checkout-page { padding-top: 24px; padding-bottom: 70px; }
+
+/* Breadcrumb */
+.checkout-breadcrumb { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 11px; }
+.checkout-breadcrumb a { color: var(--orange); font-weight: 700; transition: color var(--t-fast); }
+.checkout-breadcrumb a:hover { color: var(--orange-dark); }
+.crumb-sep { color: var(--muted); opacity: .6; }
+
+/* Title */
+.checkout-title { display: flex; align-items: end; justify-content: space-between; margin: 25px 0 27px; }
+.checkout-title h1 { margin: 6px 0 4px; font: 800 34px "Plus Jakarta Sans"; letter-spacing: -1px; }
+.checkout-title p { margin: 0; color: var(--muted); font-size: 12px; }
+.step-pill { padding: 8px 11px; border-radius: 99px; color: var(--c-orange); background: var(--c-orange-soft); font-size: 9px; font-weight: 800; letter-spacing: .7px; }
+
+/* Layout: form left, sticky summary right */
+.checkout-layout { display: grid; grid-template-columns: minmax(0, 1fr) 360px; gap: 24px; align-items: start; }
+.checkout-main { display: grid; gap: 15px; }
+
+/* Cards */
+.checkout-card, .order-summary {
+  padding: 22px; border: 1px solid var(--line); border-radius: var(--r-lg);
+  background: var(--surface); box-shadow: var(--shadow-1);
+}
+.card-heading { display: flex; align-items: center; gap: 12px; margin-bottom: 19px; }
+.step-number {
+  width: 30px; height: 30px; flex: 0 0 auto; display: grid; place-items: center;
+  border-radius: var(--r-md); color: white; background: var(--orange);
+  font-size: 12px; font-weight: 800; box-shadow: 0 3px 10px color-mix(in srgb, var(--c-orange) 35%, transparent);
+}
+.step-number-gold { background: var(--c-gold); box-shadow: 0 3px 10px color-mix(in srgb, var(--c-gold) 35%, transparent); }
+.card-heading h2 { margin: 0 0 3px; font: 700 15px "Plus Jakarta Sans"; }
+.card-heading p { margin: 0; color: var(--muted); font-size: 10px; }
+
+/* Fulfilment segmented toggle */
+.fulfilment-options { display: grid; grid-template-columns: 1fr 1fr; gap: 11px; }
+.fulfilment-option {
+  min-height: 84px; display: flex; align-items: center; gap: 11px; padding: 13px;
+  border: 1px solid var(--line); border-radius: var(--r-md); color: var(--text);
+  background: var(--surface); text-align: left; cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast), box-shadow var(--t-fast), transform var(--t-fast);
+}
+.fulfilment-option:hover { border-color: color-mix(in srgb, var(--c-orange) 55%, var(--line)); transform: translateY(-1px); box-shadow: var(--shadow-1); }
+.fulfilment-option.active { border-color: var(--c-orange); background: var(--c-orange-soft); box-shadow: var(--ring); }
+.fulfilment-icon {
+  width: 40px; height: 40px; flex: 0 0 auto; display: grid; place-items: center;
+  border-radius: var(--r-md); color: var(--muted); background: var(--surface-soft);
+  transition: color var(--t-fast), background var(--t-fast);
+}
+.fulfilment-option.active .fulfilment-icon { color: var(--c-orange); background: var(--surface); }
+.fulfilment-option strong, .payment-option strong { display: block; font-size: 11px; }
+.fulfilment-option small, .payment-option small { display: block; margin-top: 4px; color: var(--muted); font-size: 9px; }
+.option-radio { width: 15px; height: 15px; flex: 0 0 auto; margin-left: auto; border: 1px solid var(--muted); border-radius: 50%; transition: border var(--t-fast); }
+.fulfilment-option.active .option-radio { border: 4.5px solid var(--c-orange); }
+
+.inline-warning {
+  display: flex; align-items: center; gap: 8px; margin: 12px 0 0; padding: 10px 12px;
+  border-radius: var(--r-sm); color: var(--c-orange-deep);
+  background: color-mix(in srgb, var(--c-orange) 10%, transparent); font-size: 10.5px; font-weight: 600;
+}
+:root[data-theme="dark"] .inline-warning { color: var(--c-orange); }
+.inline-warning::before { content: ""; width: 4px; height: 16px; flex: 0 0 auto; border-radius: 99px; background: currentColor; }
+
+/* Address form */
+.saved-address-tools { display: grid; gap: 9px; margin-bottom: 15px; padding: 13px; border: 1px dashed var(--line); border-radius: var(--r-md); background: var(--surface-soft); }
+.saved-address-actions { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 9px; }
+.saved-address-actions a { display: inline-flex; align-items: center; gap: 5px; color: var(--orange); font-size: 10.5px; font-weight: 700; text-decoration: none; }
+.saved-address-actions a:hover { color: var(--orange-dark); text-decoration: underline; }
+.saved-address-actions label { display: inline-flex; align-items: center; gap: 6px; color: var(--muted); font-size: 10px; font-weight: 700; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 13px; }
+.field { display: grid; gap: 6px; color: var(--muted); font-size: 10px; font-weight: 700; }
+.field.full { grid-column: 1 / -1; }
+.field input, .coupon-row input {
+  width: 100%; min-width: 0; padding: 11px 12px; border: 1px solid var(--line);
+  border-radius: var(--r-md); outline: none; color: var(--text); background: var(--bg); font-size: 11px;
+  transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+.field input:focus, .coupon-row input:focus { border-color: var(--c-orange); box-shadow: var(--ring); }
+.pickup-note { padding: 12px 14px; border-radius: var(--r-md); color: var(--c-green); background: color-mix(in srgb, var(--c-green) 9%, transparent); font-size: 11px; line-height: 1.5; }
+
+/* Coupon row */
+.coupon-row { display: flex; align-items: center; gap: 9px; }
+.coupon-icon { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; flex: 0 0 auto; border: 1px solid var(--line); border-radius: var(--r-md); color: var(--c-gold); background: color-mix(in srgb, var(--c-gold) 9%, transparent); }
+.coupon-row button {
+  padding: 0 18px; min-height: 40px; border: 0; border-radius: var(--r-md);
+  color: var(--bg); background: var(--text, var(--c-ink)); font: 800 10.5px "DM Sans"; letter-spacing: .4px;
+  cursor: pointer; transition: transform var(--t-fast), box-shadow var(--t-fast), opacity var(--t-fast);
+}
+.coupon-row button:hover { transform: translateY(-1px); box-shadow: var(--shadow-1); opacity: .92; }
+.coupon-row button:active { transform: translateY(0); }
+.coupon-message { min-height: 15px; margin-top: 9px; color: var(--muted); font-size: 10px; }
+.coupon-message.error { color: var(--c-red); }
+.coupon-message.success { color: var(--c-green); }
+
+/* Checkboxes with icons */
+.student-check { display: flex; align-items: start; gap: 10px; padding: 13px; border: 1px dashed var(--line); border-radius: var(--r-md); cursor: pointer; transition: border-color var(--t-fast), background var(--t-fast); }
+.student-check:hover { border-color: color-mix(in srgb, var(--c-orange) 55%, var(--line)); background: color-mix(in srgb, var(--c-orange) 4%, transparent); }
+.student-check input { margin-top: 3px; accent-color: var(--c-orange); }
+.student-check-icon { width: 34px; height: 34px; flex: 0 0 auto; display: grid; place-items: center; border-radius: var(--r-sm); color: var(--c-orange); background: var(--c-orange-soft); }
+.student-check strong { display: block; font-size: 10.5px; }
+.student-check small { display: block; margin-top: 4px; color: var(--muted); font-size: 9px; }
+
+/* Payment option cards */
+.payment-options { display: grid; gap: 9px; }
+.payment-option {
+  display: flex; align-items: center; gap: 11px; padding: 12px;
+  border: 1px solid var(--line); border-radius: var(--r-md); cursor: pointer;
+  transition: border-color var(--t-fast), background var(--t-fast), box-shadow var(--t-fast);
+}
+.payment-option:hover { border-color: color-mix(in srgb, var(--c-orange) 55%, var(--line)); }
+.payment-option:has(input:checked) { border-color: var(--c-orange); background: var(--c-orange-soft); box-shadow: var(--ring); }
+.payment-option input { accent-color: var(--c-orange); }
+.payment-icon {
+  width: 36px; height: 36px; flex: 0 0 auto; display: grid; place-items: center;
+  border-radius: var(--r-sm); color: var(--muted); background: var(--surface-soft);
+  transition: color var(--t-fast), background var(--t-fast);
+}
+.payment-option:has(input:checked) .payment-icon { color: var(--c-orange); background: var(--surface); }
+
+/* Order summary */
+.order-summary { position: sticky; top: 98px; border-radius: var(--r-lg); }
+.summary-head { display: flex; justify-content: space-between; align-items: center; }
+.summary-head h2 { margin: 5px 0 0; font: 800 20px "Plus Jakarta Sans"; }
+.summary-count { color: var(--muted); font-size: 10px; font-weight: 700; }
+.summary-outlet { display: flex; align-items: center; gap: 10px; margin: 17px 0; padding: 11px 12px; border: 1px solid var(--line); border-radius: var(--r-md); background: var(--surface-soft); }
+.outlet-mini-icon { width: 36px; height: 36px; display: grid; place-items: center; border-radius: var(--r-sm); color: var(--c-orange); background: var(--surface); }
+.summary-outlet strong { display: block; font-size: 11px; }
+.summary-outlet small { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; }
+.summary-items { display: grid; gap: 11px; max-height: 220px; overflow: auto; padding-right: 2px; }
+.summary-item { display: flex; justify-content: space-between; gap: 10px; font-size: 10.5px; }
+.summary-item span:last-child { font-weight: 800; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.summary-item small { color: var(--muted); }
+.summary-empty { display: grid; justify-items: center; gap: 8px; padding: 18px 8px; text-align: center; color: var(--muted); font-size: 10.5px; }
+.summary-empty .cravio-svg { color: var(--c-orange); opacity: .8; }
+
+/* Bill */
+.bill-lines { display: grid; gap: 11px; margin-top: 18px; padding-top: 15px; border-top: 1px solid var(--line); }
+.bill-lines > div, .bill-total { display: flex; justify-content: space-between; gap: 10px; font-size: 10.5px; font-variant-numeric: tabular-nums; }
+.bill-lines span { color: var(--muted); }
+.bill-lines strong { font-weight: 700; }
+.discount-value { color: var(--c-green); }
+.bill-total { margin-top: 15px; padding-top: 14px; border-top: 1px solid var(--line); font-size: 13px; font-weight: 800; }
+.bill-total strong { font-size: 21px; font-variant-numeric: tabular-nums; }
+
+.summary-footnote, .terms-note { color: var(--muted); font-size: 9px; line-height: 1.5; }
+.place-order-button {
+  width: 100%; margin-top: 12px; padding: 13px; display: flex; align-items: center; justify-content: center; gap: 9px;
+  border: 0; border-radius: var(--r-md); color: white; background: var(--c-orange);
+  font: 800 12.5px "DM Sans"; cursor: pointer;
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.place-order-button:hover:not(:disabled) { background: var(--c-orange-deep); transform: translateY(-1px); box-shadow: var(--shadow-1); }
+.place-order-button:active:not(:disabled) { transform: translateY(0); }
+.place-order-button:disabled { cursor: not-allowed; }
+.place-order-arrow { display: inline-flex; transition: transform var(--t-fast); }
+.place-order-button:hover:not(:disabled) .place-order-arrow { transform: translateX(3px); }
+
+/* Confirmation modal */
+.confirmation-backdrop { position: fixed; inset: 0; z-index: 40; display: grid; place-items: center; padding: 16px; background: rgba(0,0,0,.55); }
+.confirmation-backdrop[hidden] { display: none; }
+.confirmation-card { width: min(420px, 100%); padding: 30px; border-radius: var(--r-xl); background: var(--surface); box-shadow: var(--shadow-3); text-align: center; }
+.success-mark { width: 58px; height: 58px; display: grid; place-items: center; margin: 0 auto 18px; border-radius: 50%; color: white; background: var(--c-green); box-shadow: 0 8px 22px color-mix(in srgb, var(--c-green) 40%, transparent); }
+.confirmation-card h2 { margin: 7px 0; font: 800 25px "Plus Jakarta Sans"; }
+.confirmation-card p { color: var(--muted); font-size: 11px; line-height: 1.6; }
+.confirmation-order-id { margin: 18px 0; padding: 12px; border-radius: var(--r-md); background: var(--surface-soft); color: var(--muted); font-size: 10px; }
+.confirmation-order-id strong { color: var(--text); }
+.confirmation-card button {
+  width: 100%; min-height: 40px; padding: 12px; border: 0; border-radius: var(--r-md);
+  color: white; background: var(--c-orange); font: 800 11px "DM Sans"; cursor: pointer;
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.confirmation-card button:hover { background: var(--c-orange-deep); transform: translateY(-1px); box-shadow: var(--shadow-1); }
+
+/* Responsive */
+@media (max-width: 850px) {
+  .checkout-layout { grid-template-columns: 1fr; }
+  .order-summary { position: static; grid-row: 1; }
+}
+@media (max-width: 520px) {
+  .checkout-title h1 { font-size: 29px; }
+  .checkout-card, .order-summary { padding: 16px; }
+  .fulfilment-options { grid-template-columns: 1fr; }
+  .form-grid { grid-template-columns: 1fr; }
+  .field.full { grid-column: auto; }
+  .secure-label { display: none; }
+}
+
+.rewards-card .card-heading p { margin-top: 5px; }
+.rewards-card .card-heading p strong { color: var(--c-orange); }
+.rewards-card .student-check { margin-top: 14px; }

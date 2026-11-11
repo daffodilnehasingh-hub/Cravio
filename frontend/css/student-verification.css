@@ -1,0 +1,17 @@
+.verify-shell{width:min(100% - 32px,540px)}.verify-card{padding:32px}
+.privacy-note{padding:14px 16px;border:1px solid color-mix(in srgb,var(--c-orange) 30%,var(--line,#f5d6c3));border-radius:var(--r-md);background:var(--c-orange-soft);margin-bottom:20px}
+.privacy-note strong{display:inline-flex;align-items:center;gap:7px;font-size:13px}
+.privacy-note strong .cravio-svg{color:var(--c-green)}
+.privacy-note p{margin:7px 0 0;color:var(--muted,#776b63);font-size:12px;line-height:1.5}
+.verify-card form small{color:var(--muted,#81756e);font-size:11px}
+.preview-wrap{margin-top:12px;padding:10px;border:1px dashed var(--line,#e5d8cf);border-radius:var(--r-md)}
+.preview-wrap img{display:block;max-width:100%;max-height:230px;margin:auto;border-radius:var(--r-sm)}
+.status-panel{display:flex;gap:10px;align-items:flex-start;margin:0 0 20px;padding:13px 15px;border-radius:var(--r-md);background:var(--surface-soft,#f7f2ed);color:var(--muted,#5f5752);font-size:13px;line-height:1.5}
+.status-panel .cravio-svg{flex:none;margin-top:1px}
+.status-panel.approved{background:var(--c-green-soft);color:var(--c-green)}
+.status-panel.approved .cravio-svg{color:var(--c-green)}
+.status-panel.pending{background:color-mix(in srgb,var(--c-gold) 12%,transparent);color:var(--c-gold)}
+.status-panel.pending .cravio-svg{color:var(--c-gold)}
+.status-panel.rejected{background:color-mix(in srgb,var(--c-red) 10%,transparent);color:var(--c-red)}
+.status-panel.rejected .cravio-svg{color:var(--c-red)}
+@media(max-width:480px){.verify-card{padding:24px 19px}}

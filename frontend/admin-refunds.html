@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Refund Management | Cravio</title>
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="stylesheet" href="css/admin-refunds.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body>
+  <main class="auth-shell refund-shell">
+    <a class="brand" href="index.html">cravio<span>.</span></a>
+    <section class="auth-card refund-page">
+      <p class="eyebrow">ADMIN WORKSPACE</p>
+      <h1>Refund management</h1>
+      <p class="subtext">Review customer requests and initiate full refunds through Razorpay.</p>
+      <div class="refund-toolbar"><p id="refundMessage" role="status"></p><div><button id="refreshRefunds" type="button" class="btn btn-sm"><span class="ci" data-icon="zap" data-size="14"></span>Refresh queue</button></div></div>
+      <div id="refundQueue" class="refund-queue">Loading refund requests...</div>
+      <a class="back-link" href="index.html"><span class="ci icon-flip" data-icon="arrow-right" data-size="14"></span> Back to Cravio</a>
+    </section>
+  </main>
+  <script src="js/admin-refunds.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Delivery Partner | Cravio</title><link rel="stylesheet" href="css/auth.css"><link rel="stylesheet" href="css/delivery.css">  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body><main class="delivery-shell"><header><a class="brand" href="index.html">cravio<span>.</span></a><button id="logoutButton" class="btn-ghost btn-sm"><span class="ci" data-icon="log-out" data-size="14"></span>Log out</button></header>
+<section><p class="eyebrow">DELIVERY PARTNER</p><h1><span class="ci" data-icon="truck" data-size="28"></span> Your delivery jobs</h1><p class="muted">Location is shared only while an assigned order is marked out for delivery. Allow location access when prompted.</p></section>
+<section class="delivery-profile" id="deliveryProfile"><div><strong>Availability</strong><span id="availabilityLabel">Loading profile...</span></div><label for="availabilitySelect">Set status</label><select id="availabilitySelect"><option value="available">Available</option><option value="offline">Offline</option></select><div class="delivery-profile-stats" id="deliveryProfileStats"></div></section>
+<p id="deliveryMessage" role="status"></p><div id="deliveryJobs">Loading assigned deliveries...</div></main><script src="js/delivery-dashboard.js"></script>
+</body></html>

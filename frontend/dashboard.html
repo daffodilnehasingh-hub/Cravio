@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Outlet Dashboard | Cravio</title><link rel="stylesheet" href="css/auth.css"><link rel="stylesheet" href="css/dashboard.css">  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body><main class="dashboard-shell">
+<header class="dashboard-header"><a class="brand" href="index.html">cravio<span>.</span></a>
+<div><span id="roleLabel" class="role-label">Dashboard</span><button id="logoutButton" class="logout-button btn-ghost btn-sm"><span class="ci" data-icon="log-out" data-size="14"></span>Log out</button></div></header>
+<section class="dashboard-intro"><p class="eyebrow">CRAVIO OPERATIONS</p><h1>Order dashboard</h1><p class="subtext">Review incoming orders and update their preparation status.</p></section>
+<div class="dashboard-stats" id="stats"></div>
+<nav class="quick-links"><a href="vendor-dashboard.html"><span class="ci" data-icon="utensils" data-size="14"></span>Vendor workspace</a> · <a href="admin-analytics.html"><span class="ci" data-icon="list" data-size="14"></span>Analytics dashboard</a> · <a href="inventory.html"><span class="ci" data-icon="package" data-size="14"></span>Inventory management</a> · <a href="outlet-management.html"><span class="ci" data-icon="store" data-size="14"></span>Manage outlets & menus</a> · <a href="admin-coupons.html"><span class="ci" data-icon="ticket" data-size="14"></span>Manage coupons</a> · <a href="admin-support.html"><span class="ci" data-icon="mail" data-size="14"></span>Customer support inbox</a> · <a href="admin-verifications.html"><span class="ci" data-icon="shield-check" data-size="14"></span>Review student ID submissions</a> · <a href="delivery-dashboard.html"><span class="ci" data-icon="locate" data-size="14"></span>Delivery partner dashboard</a> · <a href="delivery-management.html"><span class="ci" data-icon="truck" data-size="14"></span>Manage delivery partners</a></nav>
+<div class="dashboard-toolbar"><h2>Incoming orders</h2><button id="refreshButton" class="btn btn-sm"><span class="ci" data-icon="zap" data-size="14"></span>Refresh</button></div>
+<div id="dashboardMessage" class="dashboard-message" role="status"></div>
+<div id="managedOrders" class="managed-orders"><p>Loading orders...</p></div>
+</main><script src="js/dashboard.js"></script>
+</body></html>

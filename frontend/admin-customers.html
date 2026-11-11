@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Customer Management | Cravio</title><link rel="stylesheet" href="css/admin-control.css"><link rel="stylesheet" href="css/admin-customers.css">  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body><main class="admin-shell">
+<header class="topbar"><a class="brand" href="index.html">cravio<span>.</span></a><div><a href="admin-control.html"><span class="ci icon-flip" data-icon="arrow-right" data-size="14"></span> Admin control center</a><button id="logoutButton" class="btn-ghost btn-sm"><span class="ci" data-icon="log-out" data-size="14"></span>Log out</button></div></header>
+<section class="welcome"><p class="eyebrow">CUSTOMER OPERATIONS</p><h1>Customer management</h1><p>Find customer accounts, review order history and manage account access.</p></section>
+<section class="customer-toolbar"><input id="searchInput" type="search" placeholder="Search name, email or phone…"><select id="statusFilter"><option value="all">All customers</option><option value="active">Active accounts</option><option value="inactive">Deactivated accounts</option></select><button id="searchButton" class="btn btn-sm"><span class="ci" data-icon="search" data-size="14"></span>Search</button><button id="resetButton" class="secondary btn-ghost btn-sm">Reset</button></section>
+<p id="customerMessage" role="status"></p>
+<section class="customer-layout"><div class="customer-list-panel"><div class="list-heading"><h2>Customers</h2><span id="resultCount">Loading…</span></div><div id="customerList" class="customer-list">Loading customers…</div><div class="pagination"><button id="previousPage" class="secondary btn-ghost btn-sm"><span class="ci icon-flip" data-icon="chevron-right" data-size="14"></span>Previous</button><span id="pageLabel">Page 1</span><button id="nextPage" class="secondary btn-ghost btn-sm">Next<span class="ci" data-icon="chevron-right" data-size="14"></span></button></div></div>
+<aside id="customerDetails" class="customer-details"><div class="detail-placeholder"><span class="empty-state-icon"><span data-icon="user" data-size="26"></span></span><h2>Select a customer</h2><p>Customer profile, account status and recent orders will appear here.</p></div></aside></section>
+<footer>Cravio Admin · Customer information must be handled confidentially.</footer>
+</main><script src="js/admin-customers.js"></script>
+</body></html>

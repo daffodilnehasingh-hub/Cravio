@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Cravio — your cravings, our priority. Discover restaurants, college canteens and delicious food near you." />
+  <title>Cravio | Your Cravings, Our Priority</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Cravio home">
+      <span class="brand-mark">C</span><span>cravio<span class="brand-dot">.</span></span>
+    </a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="nav-link active" href="#home">Home</a>
+      <a class="nav-link" href="restaurants.html">Restaurants</a>
+      <a class="nav-link" href="restaurants.html?type=canteen">College canteens</a>
+      <a class="nav-link" href="#offers">Offers</a>
+    <a class="cravio-account-link" href="customer-dashboard.html">My Dashboard</a><a class="cravio-account-link" href="profile.html">My Account</a></nav>
+    <div class="header-actions">
+      <button class="icon-button theme-toggle" id="themeToggle" aria-label="Toggle colour theme" title="Toggle theme"><span data-icon="moon"></span></button>
+      <a class="icon-button" href="favorites.html" aria-label="Favorites" title="Favorites"><span data-icon="heart"></span></a>
+      <button class="profile-button"><span class="avatar"><span data-icon="user" data-size="17"></span></span><span class="profile-label">Guest</span></button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero page-wrap">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> GOOD FOOD. GREAT MOOD.</span>
+        <h1>Your cravings,<br><span>delivered.</span></h1>
+        <p class="hero-description">Discover Kota's favourite restaurants and campus canteens. Your next delicious bite is just a few clicks away.</p>
+        <div class="location-line"><span class="location-pin" data-icon="map-pin"></span><span>Delivering around <strong>Kota, Rajasthan</strong></span><button class="text-button" type="button">Change</button></div>
+        <form class="search-bar" id="searchForm">
+          <span class="search-icon" data-icon="search"></span>
+          <input id="searchInput" type="search" placeholder="Search dishes, restaurants or canteens..." autocomplete="off" />
+          <button class="filter-button" id="filterToggle" type="button" aria-expanded="false"><span data-icon="sliders" data-size="15"></span> <span>Filters</span></button>
+          <button class="search-submit" type="submit">Search</button>
+        </form>
+        <div class="filter-panel" id="filterPanel" hidden>
+          <label class="filter-check"><input type="checkbox" id="vegOnly"> Vegetarian only</label>
+          <label class="filter-check"><input type="checkbox" id="pickupOnly"> Pickup available</label>
+          <label class="filter-check"><input type="checkbox" id="deliveryOnly"> Delivery available</label>
+          <label class="filter-select">Minimum rating
+            <select id="ratingFilter"><option value="0">Any rating</option><option value="4">4.0+</option><option value="4.5">4.5+</option></select>
+          </label>
+        </div>
+        <div class="hero-perks"><span><span data-icon="zap" data-size="13"></span> Student discounts</span><span><span data-icon="check" data-size="13"></span> Easy pickup</span><span><span data-icon="check-circle" data-size="13"></span> Live order updates</span></div>
+      </div>
+      <div class="hero-art" aria-label="Food illustration">
+        <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+        <div class="hero-food-card">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85" alt="Delicious burger with fresh ingredients">
+          <div class="floating-rating"><span data-icon="star" data-size="15"></span> 4.8 <small>Top rated</small></div>
+          <div class="floating-note"><span class="note-icon" data-icon="arrow-up-right" data-size="15"></span><span><strong>Freshly made</strong><small>Happiness in every bite</small></span></div>
+        </div>
+        <span class="spark spark-a" data-icon="sparkles" data-size="30"></span><span class="spark spark-b" data-icon="sparkles" data-size="23"></span>
+      </div>
+    </section>
+
+    <section class="page-wrap category-section">
+      <div class="section-heading"><div><span class="eyebrow">FIND YOUR FAVOURITE</span><h2>What are you craving?</h2></div><button class="plain-link" id="clearCategory" type="button">Clear selection <span data-icon="arrow-up-right" data-size="13"></span></button></div>
+      <div class="category-grid" id="categoryGrid">
+        <button class="category-card selected" data-category="All"><span class="category-emoji" data-icon="platter" data-size="27"></span><span>All food</span></button>
+        <button class="category-card" data-category="Veg"><span class="category-emoji" data-icon="leaf" data-size="27"></span><span>Veg</span></button>
+        <button class="category-card" data-category="Non-Veg"><span class="category-emoji" data-icon="drumstick" data-size="27"></span><span>Non-veg</span></button>
+        <button class="category-card" data-category="Snacks"><span class="category-emoji" data-icon="cookie" data-size="27"></span><span>Snacks</span></button>
+        <button class="category-card" data-category="Vegan"><span class="category-emoji" data-icon="sprout" data-size="27"></span><span>Vegan</span></button>
+        <button class="category-card" data-category="Drinks"><span class="category-emoji" data-icon="cup" data-size="27"></span><span>Drinks</span></button>
+        <button class="category-card" data-category="Street Food"><span class="category-emoji" data-icon="flame" data-size="27"></span><span>Street food</span></button>
+      </div>
+    </section>
+
+    <section class="page-wrap offers-banner" id="offers">
+      <div class="offer-content"><span class="offer-kicker">A LITTLE SOMETHING FOR STUDENTS</span><h2>Good grades deserve<br>good food deals.</h2><p>Verify your student ID to unlock exclusive Cravio discounts.</p><a href="#student" class="offer-link">Explore student benefits <span data-icon="arrow-right" data-size="14"></span></a></div>
+      <div class="offer-stamp"><span>STUDENT</span><strong>DEALS</strong><small>COMING IN HOT</small></div>
+      <span class="offer-decoration">✳</span>
+    </section>
+
+    <section class="page-wrap food-section" id="restaurants">
+      <div class="section-heading">
+        <div><span class="eyebrow">HANDPICKED FOR YOU</span><h2>Popular near you</h2><p class="section-subtitle">A few local favourites to get you started.</p></div>
+        <div class="sort-wrap"><label for="sortSelect">Sort by</label><select id="sortSelect"><option value="recommended">Recommended</option><option value="rating">Highest rated</option><option value="price">Price: low to high</option></select></div>
+      </div>
+      <div class="food-grid" id="foodGrid" aria-live="polite"></div>
+      <p class="empty-state" id="emptyState" hidden>No matches found. Try changing your search or filters.</p>
+    </section>
+
+    <section class="page-wrap canteen-section" id="canteens">
+      <div class="canteen-copy"><span class="eyebrow">CAMPUS TO CRAVINGS</span><h2>Your campus canteen,<br>just a tap away.</h2><p>Skip the queue. Order from participating college canteens and choose delivery (where available) or convenient self-pickup.</p><a href="restaurants.html?type=canteen" class="dark-link">Explore canteens <span data-icon="arrow-right" data-size="14"></span></a></div>
+      <div class="canteen-visual"><div class="canteen-circle" data-icon="school" data-size="64"></div><div class="canteen-pill pill-top">Order ahead</div><div class="canteen-pill pill-bottom">Pick up when ready</div><div class="canteen-squiggle" data-icon="arrow-right" data-size="46"></div></div>
+    </section>
+
+    <section class="page-wrap mini-trust" id="student">
+      <div><span class="trust-icon" data-icon="zap" data-size="20"></span><strong>Quick ordering</strong><small>Less waiting, more enjoying.</small></div>
+      <div><span class="trust-icon" data-icon="graduation-cap" data-size="20"></span><strong>Student perks</strong><small>Exclusive deals for verified students.</small></div>
+      <div><span class="trust-icon" data-icon="map-pin" data-size="20"></span><strong>Order your way</strong><small>Delivery or self-pickup, your choice.</small></div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="#"><span class="brand-mark">C</span><span>cravio<span class="brand-dot">.</span></span></a><p>Your cravings, our priority.</p><span>© <span id="year"></span> Cravio. Built with a little extra flavour.</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/app.js"></script>
+</body>
+</html>

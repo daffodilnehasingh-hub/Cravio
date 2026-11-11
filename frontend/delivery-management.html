@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Delivery Partner Management | Cravio</title><link rel="stylesheet" href="css/auth.css"><link rel="stylesheet" href="css/delivery-management.css">  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body><main class="partner-shell">
+<header><a class="brand" href="index.html">cravio<span>.</span></a><nav><a href="dashboard.html"><span class="ci" data-icon="receipt" data-size="14"></span> Orders dashboard</a> · <button id="logoutButton" class="btn-ghost btn-sm"><span class="ci" data-icon="log-out" data-size="14"></span>Log out</button></nav></header>
+<section class="partner-intro"><p class="eyebrow">CRAVIO FLEET</p><h1>Delivery partner management</h1><p>Create delivery accounts, review their availability and monitor completed deliveries.</p></section>
+<section class="partner-stats" id="partnerStats"><div class="partner-stat">Loading...</div></section>
+<section class="partner-panel"><h2>Add delivery partner</h2><p>Create an account and share the temporary login credentials securely with the partner.</p>
+<form id="partnerForm" class="partner-form">
+<label>Full name<input name="name" required minlength="2" maxlength="60" placeholder="Delivery partner name"></label>
+<label>Email<input name="email" type="email" required placeholder="partner@example.com"></label>
+<label>Phone<input name="phone" required placeholder="10-digit phone number"></label>
+<label>Temporary password<input name="password" type="password" required minlength="8" maxlength="128" placeholder="At least 8 characters"></label>
+<label>Vehicle type<select name="vehicleType"><option value="bike">Motorbike</option><option value="scooter">Scooter</option><option value="bicycle">Bicycle</option><option value="other">Other</option></select></label>
+<label>Vehicle number<input name="vehicleNumber" maxlength="24" placeholder="Optional registration number"></label>
+<label>Emergency contact<input name="emergencyContact" maxlength="30" placeholder="Optional emergency contact"></label>
+<button type="submit" class="btn"><span class="ci" data-icon="plus" data-size="16"></span>Create partner account</button>
+</form><p id="partnerMessage" role="status"></p></section>
+<section class="partner-list-heading"><div><h2>Delivery team</h2><p>Availability and delivery performance</p></div><button id="refreshPartners" class="btn-ghost btn-sm"><span class="ci" data-icon="zap" data-size="14"></span>Refresh</button></section>
+<div id="partnerList">Loading delivery partners...</div>
+</main><script src="js/delivery-management.js"></script>
+</body></html>

@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Track Your Order | Cravio</title><link rel="stylesheet" href="css/auth.css"><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"><link rel="stylesheet" href="css/track-order.css">  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body><main class="track-shell">
+<header><a class="brand" href="index.html">cravio<span>.</span></a><nav><a href="orders.html">My orders</a> · <a href="support.html">Help</a></nav></header>
+<section class="track-hero"><div><span class="eyebrow">CRAVIO ORDER TRACKING</span><h1>Your food journey</h1><p id="trackMessage">Loading your latest order update…</p></div><div class="hero-emoji"><span class="ci" data-icon="utensils" data-size="46"></span></div></section>
+<section id="orderSummary" class="track-card"><div class="loading">Loading order details…</div></section>
+<section class="progress-panel"><div class="section-heading"><div><h2>Order progress</h2><p>Follow each step from the outlet to your door.</p></div><span id="liveStatus" class="live-pill">Connecting…</span></div><div id="timeline"></div></section>
+<section id="etaPanel" class="eta-grid"></section>
+<section id="deliveryPanel" class="delivery-panel" hidden><div class="section-heading"><div><h2>Live delivery location</h2><p>Location updates are shared by your delivery partner.</p></div></div><div id="map" aria-label="Delivery partner map"></div><p id="mapMessage" class="map-note">Waiting for the first location update.</p><div id="partnerInfo"></div></section>
+<section class="track-actions"><a id="receiptLink" href="orders.html">View receipt</a><a href="orders.html"><span class="ci flip-x" data-icon="arrow-right" data-size="14"></span> Back to my orders</a></section>
+<footer>Cravio · Live order updates may be delayed by network or GPS availability.</footer>
+</main><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script><script src="http://localhost:5000/socket.io/socket.io.js"></script><script src="js/track-order.js"></script>
+</body></html>

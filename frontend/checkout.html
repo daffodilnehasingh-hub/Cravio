@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Cravio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/checkout.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html"><span class="brand-mark">C</span><span>cravio<span class="brand-dot">.</span></span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link" href="restaurants.html">Explore</a>
+      <a class="nav-link" href="restaurants.html?type=canteen">College canteens</a>
+    </nav>
+    <div class="header-actions">
+      <button class="icon-button" id="themeToggle" aria-label="Toggle colour theme" title="Toggle theme"><span data-icon="moon" data-size="17"></span></button>
+      <span class="secure-label"><span data-icon="shield-check" data-size="13"></span> Secure checkout</span>
+    </div>
+  </header>
+
+  <main class="page-wrap checkout-page">
+    <div class="checkout-breadcrumb"><a href="restaurants.html">Explore</a><span class="crumb-sep" data-icon="chevron-right" data-size="12"></span><a href="#" id="backToMenu">Menu</a><span class="crumb-sep" data-icon="chevron-right" data-size="12"></span><strong>Checkout</strong></div>
+    <div class="checkout-title"><div><span class="eyebrow">ALMOST THERE</span><h1>Checkout</h1><p>Review your order and choose how you'd like to get it.</p></div><span class="step-pill">STEP 4 OF 4</span></div>
+
+    <div class="checkout-layout">
+      <section class="checkout-main">
+        <section class="checkout-card">
+          <div class="card-heading"><span class="step-number">1</span><div><h2>How would you like your food?</h2><p>Choose delivery or collect it yourself.</p></div></div>
+          <div class="fulfilment-options" id="fulfilmentOptions">
+            <button class="fulfilment-option active" data-type="delivery" type="button">
+              <span class="fulfilment-icon" data-icon="truck" data-size="22"></span><span><strong>Home delivery</strong><small>Delivered to your doorstep</small></span><span class="option-radio"></span>
+            </button>
+            <button class="fulfilment-option" data-type="pickup" type="button">
+              <span class="fulfilment-icon" data-icon="store" data-size="22"></span><span><strong>Self pickup</strong><small>Collect directly from the outlet</small></span><span class="option-radio"></span>
+            </button>
+          </div>
+          <p class="inline-warning" id="deliveryUnavailable" hidden>This outlet does not offer delivery. Please choose self pickup.</p>
+        </section>
+
+        <section class="checkout-card" id="addressCard">
+          <div class="card-heading"><span class="step-number">2</span><div><h2>Delivery address</h2><p>Where should we bring your order?</p></div></div>
+          <div class="saved-address-tools" id="savedAddressTools">
+            <label class="field full">Use a saved address<select id="savedAddressSelect"><option value="">Enter a new address</option></select></label>
+            <div class="saved-address-actions"><a href="address-book.html"><span data-icon="map-pin" data-size="13"></span> Manage saved addresses</a><label><input type="checkbox" id="saveAddress"> Save this address for next time</label></div>
+          </div>
+          <div class="form-grid">
+            <label class="field full">Full name<input id="customerName" type="text" placeholder="Enter your name" autocomplete="name"></label>
+            <label class="field">Phone number<input id="customerPhone" type="tel" inputmode="numeric" maxlength="10" placeholder="10-digit mobile number"></label>
+            <label class="field">PIN code<input id="pincode" type="text" inputmode="numeric" maxlength="6" placeholder="6-digit PIN code"></label>
+            <label class="field full">House / Hostel / Building<input id="addressLine" type="text" placeholder="Room number, hostel or building"></label>
+            <label class="field full">Street / Area / Landmark<input id="landmark" type="text" placeholder="Area, street or nearby landmark"></label>
+          </div>
+          <p class="pickup-note" id="pickupNote" hidden>For self pickup, you do not need to enter a delivery address. We'll show the outlet's pickup details after placing your order.</p>
+        </section>
+
+        <section class="checkout-card">
+          <div class="card-heading"><span class="step-number">3</span><div><h2>Offers & student benefits</h2><p>Apply an available demo coupon to save on your order.</p></div></div>
+          <div class="coupon-row"><span class="coupon-icon" data-icon="ticket" data-size="17"></span><input id="couponInput" type="text" placeholder="Enter coupon code" aria-label="Coupon code"><button id="applyCoupon" type="button" class="apply-coupon-btn">Apply</button></div>
+          <p class="coupon-message" id="couponMessage">Try <strong>CRAVIO10</strong> for 10% off your food subtotal.</p>
+          <label class="student-check"><input type="checkbox" id="studentDiscount"><span class="student-check-icon" data-icon="graduation-cap" data-size="19"></span><span><strong>I'm a verified Cravio student</strong><small>Demo only — real student ID verification will be connected later.</small></span></label>
+        </section>
+
+        <section class="checkout-card rewards-card">
+          <div class="card-heading"><span class="step-number step-number-gold"><span data-icon="sparkles" data-size="14"></span></span><div><h2>Cravio rewards</h2><p><strong id="rewardBalance">Loading points…</strong> · 10 points = ₹1 discount</p></div></div>
+          <label class="student-check"><input type="checkbox" id="useRewards"><span class="student-check-icon" data-icon="gift" data-size="19"></span><span><strong>Redeem my points</strong><small id="rewardHint">Use up to 500 points on this order. Reward redemption is available with cash on delivery or pay at outlet.</small></span></label>
+        </section>
+
+        <section class="checkout-card">
+          <div class="card-heading"><span class="step-number">4</span><div><h2>Payment method</h2><p>Choose how you want to pay.</p></div></div>
+          <div class="payment-options">
+            <label class="payment-option"><input type="radio" name="payment" value="cod" checked><span class="payment-icon" data-icon="wallet" data-size="18"></span><span><strong>Cash on delivery</strong><small>Pay when your order arrives</small></span></label>
+            <label class="payment-option"><input type="radio" name="payment" value="razorpay"><span class="payment-icon" data-icon="credit-card" data-size="18"></span><span><strong>UPI / Online payment</strong><small>Secure online payment using Razorpay</small></span></label>
+            <label class="payment-option"><input type="radio" name="payment" value="outlet"><span class="payment-icon" data-icon="store" data-size="18"></span><span><strong>Pay at outlet</strong><small>Pay when you collect your order</small></span></label>
+          </div>
+        </section>
+      </section>
+
+      <aside class="order-summary">
+        <div class="summary-head"><div><span class="eyebrow">YOUR ORDER</span><h2>Order summary</h2></div><span class="summary-count" id="summaryCount">0 items</span></div>
+        <div class="summary-outlet"><span class="outlet-mini-icon" data-icon="utensils" data-size="17"></span><div><strong id="summaryOutlet">Your outlet</strong><small id="summaryFulfilment">Home delivery</small></div></div>
+        <div class="summary-items" id="summaryItems"></div>
+        <div class="bill-lines">
+          <div><span>Item subtotal</span><strong id="itemSubtotal">₹0</strong></div>
+          <div><span>Delivery fee</span><strong id="deliveryFee">₹0</strong></div>
+          <div><span>Discounts & rewards</span><strong class="discount-value" id="discountAmount">−₹0</strong></div>
+        </div>
+        <div class="bill-total"><span>Total to pay</span><strong id="grandTotal">₹0</strong></div>
+        <p class="summary-footnote">Taxes and final charges may vary. This student-project demo uses sample fees and discounts.</p>
+        <button class="place-order-button" id="placeOrder" type="button">Place order <span class="place-order-arrow" data-icon="arrow-right" data-size="16"></span></button>
+        <p class="terms-note">By placing your order, you agree to Cravio's demo ordering terms.</p>
+      </aside>
+    </div>
+  </main>
+
+  <div class="confirmation-backdrop" id="confirmation" hidden>
+    <section class="confirmation-card" role="dialog" aria-modal="true" aria-labelledby="confirmationTitle">
+      <div class="success-mark"><span data-icon="check" data-size="28"></span></div><span class="eyebrow">ORDER PLACED</span><h2 id="confirmationTitle">You're all set!</h2>
+      <p id="confirmationText">Your demo order has been created.</p>
+      <div class="confirmation-order-id">Order ID <strong id="confirmationId"></strong></div>
+      <button id="backHome" type="button">Back to Cravio home</button>
+    </section>
+  </div>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="index.html"><span class="brand-mark">C</span><span>cravio<span class="brand-dot">.</span></span></a><p>Your cravings, our priority.</p><span>© <span id="year"></span> Cravio. Built with a little extra flavour.</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+const express = require("express");
+const { protect, requireRole } = require("../middleware/authMiddleware");
+const { createTicket, getMyTickets, getAllTickets, replyToTicket } = require("../controllers/supportController");
+const router = express.Router();
+router.use(protect);
+router.post("/", createTicket);
+router.get("/my", getMyTickets);
+router.get("/manage", requireRole("admin"), getAllTickets);
+router.post("/:id/reply", replyToTicket);
+module.exports = router;

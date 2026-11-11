@@ -1,0 +1,17 @@
+const router=require("express").Router();const {protect,requireRole}=require("../middleware/authMiddleware");const c=require("../controllers/outletController");
+const admin = require("../controllers/adminOutletController");
+router.get("/admin/manage",protect,requireRole("admin"),admin.listOutlets);
+router.patch("/admin/:outletId/approval",protect,requireRole("admin"),admin.updateOutletApproval);
+router.patch("/admin/:outletId/availability",protect,requireRole("admin"),admin.updateOutletAvailability);
+router.patch("/admin/:outletId/vendor",protect,requireRole("admin"),admin.assignOutletVendor);
+router.get("/",c.publicList);router.get("/recommendations",c.publicRecommendations);router.get("/recommendations/me",protect,c.personalRecommendations);router.get("/:outletId/menu",c.publicMenu);
+router.get("/manage/inventory",protect,requireRole("admin","vendor"),c.inventoryList);
+router.get("/manage/all",protect,requireRole("admin","vendor"),c.manageList);
+router.post("/",protect,requireRole("admin"),c.create);
+router.patch("/:outletId",protect,requireRole("admin","vendor"),c.update);
+router.post("/:outletId/items",protect,requireRole("admin","vendor"),c.addItem);
+router.patch("/:outletId/items/bulk-prices",protect,requireRole("admin","vendor"),c.bulkUpdatePrices);
+router.patch("/:outletId/items/:itemId",protect,requireRole("admin","vendor"),c.updateItem);
+router.patch("/:outletId/items/:itemId/stock",protect,requireRole("admin","vendor"),c.updateStock);
+router.delete("/:outletId/items/:itemId",protect,requireRole("admin","vendor"),c.removeItem);
+module.exports=router;

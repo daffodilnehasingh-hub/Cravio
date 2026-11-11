@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Account | Cravio</title>
+<link rel="stylesheet" href="css/auth.css"><link rel="stylesheet" href="css/profile.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body><main class="auth-shell profile-shell">
+<a class="brand" href="index.html">cravio<span>.</span></a><a href="notifications.html">Notifications</a>
+<section class="auth-card profile-card">
+<div class="profile-top"><div><p class="eyebrow"><span class="ci" data-icon="user" data-size="14"></span> YOUR CRAVIO ACCOUNT</p><h1>My profile</h1><p class="subtext">View and update your account information.</p></div><div class="avatar" id="avatar">C</div></div>
+<div class="account-summary">
+<div><span class="summary-label">ACCOUNT TYPE</span><strong id="roleValue">Customer</strong></div>
+<div><span class="summary-label">STUDENT DISCOUNT</span><strong id="studentValue">Not verified</strong></div>
+</div>
+<form id="profileForm">
+<label for="name">Full name</label><input id="name" name="name" type="text" minlength="2" maxlength="60" required>
+<label for="email">Email address</label><input id="email" name="email" type="email" disabled>
+<label for="phone">Phone number</label><input id="phone" name="phone" type="tel" placeholder="Add your phone number">
+<p class="form-message" id="formMessage" role="status"></p>
+<button type="submit" id="saveButton" class="btn"><span class="ci" data-icon="check" data-size="14"></span>Save changes</button>
+</form>
+<p><a class="secondary-link" href="student-verification.html">Verify student ID / Student benefits <span class="ci" data-icon="graduation-cap" data-size="14"></span></a></p>
+      <div class="profile-actions"><a href="index.html" class="secondary-link"><span class="ci flip-x" data-icon="arrow-right" data-size="14"></span> Back to Cravio</a><button type="button" class="logout-button" id="logoutButton"><span class="ci" data-icon="log-out" data-size="14"></span> Log out</button></div>
+</section><p class="footnote">Cravio · Good food, good mood.</p>
+</main><script src="js/profile.js"></script>
+</body></html>

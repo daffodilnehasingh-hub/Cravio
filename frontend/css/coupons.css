@@ -1,0 +1,10 @@
+.coupon-shell{width:min(100% - 32px,850px);margin:35px auto}.coupon-shell header{display:flex;justify-content:space-between}.muted{color:#81756e}.coupon-form,.coupon-card{display:grid;gap:13px;padding:20px;margin:20px 0;border:1px solid #eadfd8;border-radius:15px;background:var(--card,#fff)}.coupon-form label{display:grid;gap:6px;font-size:13px;font-weight:700}.coupon-form input,.coupon-form select{padding:10px;border:1px solid #d9cec7;border-radius:8px;font:inherit}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.coupon-form button,.coupon-card button{border:0;border-radius:9px;padding:11px 15px;background:#f36b32;color:#fff;font-weight:800;cursor:pointer}.coupon-card{grid-template-columns:1fr auto;align-items:center}.coupon-card p{margin:4px 0;color:#81756e;font-size:13px}.coupon-card button{background:#555}.active-tag{color:#16803c;font-weight:800;font-size:12px}#couponMessage{font-size:13px;color:#16803c}@media(max-width:550px){.form-grid{grid-template-columns:1fr}.coupon-card{grid-template-columns:1fr}}
+/* ===== Cravio design-system polish (appended) ===== */
+.coupon-shell .eyebrow{margin:22px 0 0;color:var(--c-orange)}
+.coupon-shell h1{display:flex;align-items:center;gap:10px;margin:6px 0 4px}
+.coupon-shell h1 .ci{color:var(--c-orange)}
+.coupon-card{transition:transform var(--t-med),box-shadow var(--t-med)}
+.coupon-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-1)}
+.coupon-card strong{font-size:15px;letter-spacing:.4px;text-transform:uppercase}
+.empty-state{margin:20px 0;border:1px dashed var(--line,#eadfd8);border-radius:var(--r-lg);padding:28px}
+

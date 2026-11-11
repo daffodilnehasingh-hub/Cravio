@@ -1,0 +1,11 @@
+
+.refund-shell{max-width:980px}.refund-page{width:100%;max-width:900px}.refund-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:18px 0}.refund-toolbar p{margin:0;color:var(--muted,#667085)}.refund-toolbar button,.refund-actions button{border:0;border-radius:10px;padding:11px 15px;background:#ef6b35;color:#fff;font-weight:700;cursor:pointer}.refund-queue{display:grid;gap:14px}.refund-card{border:1px solid #e3e6eb;border-radius:16px;padding:18px;background:var(--card,#fff);color:var(--text,#20242c)}.refund-card-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.refund-card-head strong{display:block;font-size:17px}.refund-card-head small{display:block;color:var(--muted,#667085);margin-top:4px}.refund-tag{border-radius:30px;background:#fff1e9;color:#a9471f;padding:6px 10px;font-size:12px;font-weight:700;text-transform:capitalize}.refund-facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:16px 0}.refund-facts span{overflow-wrap:anywhere;font-size:14px}.refund-facts b{display:block;color:var(--muted,#667085);font-size:12px;margin-bottom:3px}.refund-note-label{display:block;font-size:13px;font-weight:700}.refund-admin-note{display:block;width:100%;box-sizing:border-box;margin-top:7px;border:1px solid #d9dde4;border-radius:10px;padding:10px;font:inherit;resize:vertical}.refund-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:12px}.refund-actions button.reject{background:#b42318}.refund-actions button:disabled{opacity:.55;cursor:wait}.refund-empty{padding:24px;text-align:center;border:1px dashed #cbd0d8;border-radius:14px;color:var(--muted,#667085)}@media(max-width:560px){.refund-card{padding:14px}.refund-card-head{flex-direction:column}}
+
+/* ===== Cravio design-system polish (appended) ===== */
+.icon-flip{transform:rotate(180deg)}
+.refund-tag{display:inline-flex;align-items:center}
+.refund-card{transition:box-shadow var(--t-med)}
+.refund-card:hover{box-shadow:var(--shadow-1)}
+.refund-empty{display:flex;flex-direction:column;align-items:center;gap:4px}
+.back-link{display:inline-flex;align-items:center;gap:6px}
+

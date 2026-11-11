@@ -1,0 +1,9 @@
+const API="http://localhost:5000/api",token=localStorage.getItem("cravio-token");
+const list=document.getElementById("favoriteList"),message=document.getElementById("favoriteMessage");
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+async function load(){if(!token){location.replace("login.html");return;}try{const r=await fetch(`${API}/favorites`,{headers:{Authorization:`Bearer ${token}`}});const d=await r.json();if(!r.ok)throw Error(d.message||"Unable to load favorites.");
+list.innerHTML=d.favorites.length?d.favorites.map(o=>`<article class="favorite-outlet card hover"><span class="favorite-icon">${icon("store",20)}</span><div class="favorite-info"><h2>${esc(o.name)}</h2><p><span class="badge ${o.delivery?"badge-green":"badge-gold"}">${o.delivery?"Delivery":"Pickup only"}</span></p><a href="menu.html?id=${encodeURIComponent(o.outletId)}">View menu <span class="ci" data-icon="arrow-right" data-size="13"></span></a></div><button class="btn-ghost btn-sm" data-remove="${esc(o.outletId)}">${icon("heart",13)} Remove</button></article>`).join(""):'<div class="favorites-empty empty-state"><span class="empty-state-icon"><span data-icon="heart" data-size="28"></span></span><strong>No favourites yet</strong><p>You have not saved any outlets yet. Explore restaurants and canteens to add favourites.</p><a class="btn" href="restaurants.html">Explore outlets</a></div>';
+list.querySelectorAll("[data-remove]").forEach(b=>b.onclick=()=>remove(b.dataset.remove));
+}catch(e){list.textContent=e.message;}}
+async function remove(id){try{const r=await fetch(`${API}/favorites/${encodeURIComponent(id)}`,{method:"DELETE",headers:{Authorization:`Bearer ${token}`}});const d=await r.json();if(!r.ok)throw Error(d.message);message.textContent=d.message;load();}catch(e){message.textContent=e.message;}}
+load();

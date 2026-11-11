@@ -1,0 +1,35 @@
+body{background:#fff8f4}.dashboard-shell{width:min(1120px,calc(100% - 36px));margin:0 auto;padding:24px 0 50px}
+.dashboard-header{display:flex;align-items:center;justify-content:space-between;gap:14px}
+.dashboard-header .brand{margin:0}.dashboard-header>div{display:flex;align-items:center;gap:14px}
+.role-label{font-size:12px;font-weight:800;color:#a94b20;text-transform:capitalize}
+.logout-button{margin:0;padding:10px 14px;background:#fff0ed;color:#b42318;font-size:12px}
+.dashboard-intro{margin:38px 0 24px}.dashboard-intro h1{margin:0;font-size:34px}
+.dashboard-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:30px}
+.stat-card{padding:18px;border:1px solid #f0e4dc;border-radius:15px;background:#fff}
+.stat-card span{display:block;color:#81756e;font-size:11px;font-weight:700}.stat-card strong{display:block;margin-top:8px;font-size:27px}
+.dashboard-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.dashboard-toolbar h2{font-size:20px;margin:0}.dashboard-toolbar button,.status-form button{border:0;border-radius:9px;background:#f36b32;color:#fff;padding:10px 14px;font-weight:800;cursor:pointer}
+.managed-orders{display:grid;gap:14px}.managed-card{padding:18px;border:1px solid #eee2da;border-radius:15px;background:#fff}
+.managed-top{display:flex;justify-content:space-between;gap:12px}.managed-top strong{font-size:14px}.managed-top small{display:block;margin-top:5px;color:#81756e}
+.managed-info{display:flex;flex-wrap:wrap;gap:8px 20px;margin:14px 0;color:#5f5752;font-size:13px}
+.managed-items{margin:10px 0;color:#625a55;font-size:13px;line-height:1.7}
+.status-form{display:flex;align-items:center;gap:9px;flex-wrap:wrap;border-top:1px solid #f0e8e2;padding-top:14px}
+.status-form select{min-width:190px;padding:10px;border:1px solid #e7ddd6;border-radius:8px;background:#fff}
+.dashboard-message{margin:0 0 12px;color:#16803c;font-size:13px}
+.empty-state{padding:28px;border-radius:14px;background:#fff;text-align:center;color:#81756e}
+@media(max-width:700px){.dashboard-stats{grid-template-columns:repeat(2,1fr)}.dashboard-intro h1{font-size:28px}}
+@media(max-width:420px){.dashboard-header{align-items:flex-start}.dashboard-header>div{flex-direction:column;align-items:flex-end;gap:7px}}
+\n.assign-form{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.assign-form select,.assign-form input{padding:10px;border:1px solid #ccc;border-radius:8px;max-width:100%}.assign-form button{padding:10px 14px;border:0;border-radius:8px;background:#222;color:#fff;cursor:pointer}\n
+/* ===== Cravio design-system polish (appended) ===== */
+.quick-links{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;margin:0 0 26px;font-size:13px}
+.quick-links a{color:var(--c-orange-deep);text-decoration:none;font-weight:700;display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:var(--r-sm);transition:background var(--t-fast),color var(--t-fast)}
+.quick-links a:hover{background:var(--c-orange-soft);color:var(--c-orange)}
+.stat-card .stat-icon{width:34px;height:34px;margin-bottom:10px;border-radius:var(--r-md);background:var(--c-orange-soft);color:var(--c-orange);display:grid;place-items:center}
+.stat-card strong{font-variant-numeric:tabular-nums;letter-spacing:-.5px}
+.stat-card{transition:transform var(--t-med),box-shadow var(--t-med)}
+.stat-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-1)}
+.stat-card,.managed-card{background:var(--surface,#fff)}
+.stat-card,.managed-card{border-color:var(--line,#f0e4dc)}
+.empty-state{display:flex;flex-direction:column;align-items:center;gap:6px;padding:34px 20px;text-align:center}
+.logout-button{margin:0}
+

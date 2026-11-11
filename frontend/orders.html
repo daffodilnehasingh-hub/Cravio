@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Orders | Cravio</title><link rel="stylesheet" href="css/auth.css"><link rel="stylesheet" href="css/orders.css">  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body><main class="auth-shell orders-shell">
+<a class="brand" href="index.html">cravio<span>.</span></a><a href="notifications.html">Notifications</a>
+<section class="auth-card orders-card">
+<p class="eyebrow"><span class="ci" data-icon="bag" data-size="14"></span> YOUR FOOD JOURNEY</p><h1>My orders</h1><p class="subtext">Track your recent Cravio orders and check their status.</p>
+<div class="orders-toolbar"><div id="orderMessage" class="order-message" role="status"></div><button type="button" id="refreshOrders" class="btn-ghost btn-sm"><span class="ci" data-icon="sliders" data-size="14"></span>Refresh status</button></div>
+<div id="ordersList" class="orders-list"><p class="muted">Loading your orders...</p></div>
+<a class="back-link" href="index.html"><span class="ci" data-icon="arrow-right" data-size="15"></span> Continue exploring Cravio</a>
+</section><p><a href="support.html">Need help with an order? Contact Cravio support <span class="ci" data-icon="arrow-right" data-size="14"></span></a></p></main><script src="js/orders.js"></script><script>document.getElementById("refreshOrders").addEventListener("click",loadOrders);</script>
+</body></html>

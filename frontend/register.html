@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create account | Cravio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/auth.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body>
+  <main class="auth-shell">
+    <a class="brand" href="index.html" aria-label="Cravio home"><span class="brand-mark">C</span><span>cravio<span class="brand-dot">.</span></span></a>
+    <section class="auth-card">
+      <div class="auth-card-icon" aria-hidden="true"><span data-icon="user" data-size="24"></span></div>
+      <p class="eyebrow"><span data-icon="graduation-cap" data-size="12"></span> JOIN THE CRAVIO COMMUNITY</p>
+      <h1>Create your account</h1>
+      <p class="subtext">Discover restaurants and campus favourites around you.</p>
+      <form id="registerForm">
+        <p class="form-section-title"><span data-icon="user" data-size="13"></span> Your details</p>
+        <div class="field">
+          <label for="name">Full name</label>
+          <div class="input-wrap">
+            <span class="input-icon" data-icon="user" data-size="16"></span>
+            <input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" minlength="2" maxlength="60" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="email">Email address</label>
+          <div class="input-wrap">
+            <span class="input-icon" data-icon="mail" data-size="16"></span>
+            <input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="phone">Phone number <span>(optional)</span></label>
+          <div class="input-wrap">
+            <span class="input-icon" data-icon="phone" data-size="16"></span>
+            <input id="phone" name="phone" type="tel" placeholder="10-digit mobile number" autocomplete="tel">
+          </div>
+        </div>
+        <p class="form-section-title"><span data-icon="shield-check" data-size="13"></span> Security</p>
+        <div class="field">
+          <label for="password">Password</label>
+          <div class="input-wrap">
+            <span class="input-icon" data-icon="shield-check" data-size="16"></span>
+            <input id="password" name="password" type="password" placeholder="At least 8 characters" minlength="8" autocomplete="new-password" required>
+            <button type="button" class="input-trailing" id="toggleRegisterPassword" aria-label="Show password" aria-pressed="false"><span data-icon="eye" data-size="16"></span></button>
+          </div>
+          <p class="field-hint">Use at least 8 characters so your account stays safe.</p>
+        </div>
+        <p class="form-message" id="formMessage" role="alert"></p>
+        <button type="submit" id="submitButton">Create account</button>
+      </form>
+      <form id="verifyEmailForm" hidden>
+        <div class="auth-card-icon auth-card-icon-sm" aria-hidden="true"><span data-icon="shield-check" data-size="22"></span></div>
+        <h2>Verify your email</h2>
+        <p class="subtext">Enter the 6-digit code sent to your email address.</p>
+        <div class="field">
+          <label for="verifyEmail">Email address</label>
+          <div class="input-wrap">
+            <span class="input-icon" data-icon="mail" data-size="16"></span>
+            <input id="verifyEmail" name="email" type="email" autocomplete="email" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="otp">Verification code</label>
+          <input id="otp" name="otp" type="text" inputmode="numeric" pattern="[0-9]{6}" maxlength="6" autocomplete="one-time-code" class="otp-input" placeholder="6-digit code" required>
+        </div>
+        <p class="form-message" id="verifyMessage" role="alert"></p>
+        <button type="submit" id="verifyButton">Verify email</button>
+        <button type="button" id="resendButton" class="secondary-button">Resend code</button>
+      </form>
+      <p class="switch-link">Already have an account? <a href="login.html">Login</a></p>
+      <a class="back-link" href="index.html"><span data-icon="arrow-right" data-size="14"></span> Back to home</a>
+    </section>
+    <p class="footnote">Cravio · Good food, good mood.</p>
+  </main>
+  <script src="js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Explore restaurants and college canteens on Cravio." />
+  <title>Explore | Cravio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/listing.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Cravio home"><span class="brand-mark">C</span><span>cravio<span class="brand-dot">.</span></span></a>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a class="nav-link" href="index.html">Home</a>
+      <a class="nav-link active" href="restaurants.html">Explore</a>
+      <a class="nav-link" href="restaurants.html?type=canteen">College canteens</a>
+      <a class="nav-link" href="index.html#offers">Offers</a>
+    <a class="cravio-account-link" href="profile.html">My Account</a></nav>
+    <div class="header-actions">
+      <button class="icon-button theme-toggle" id="themeToggle" aria-label="Toggle colour theme" title="Toggle theme"><span data-icon="moon"></span></button>
+      <a class="icon-button header-heart" href="favorites.html" aria-label="Favorites" title="Favorites"><span data-icon="heart"></span></a>
+      <a class="profile-button" href="#profile"><span class="avatar"><span data-icon="user" data-size="17"></span></span><span class="profile-label">Guest</span></a>
+    </div>
+  </header>
+
+  <main>
+    <section class="listing-hero page-wrap">
+      <div>
+        <span class="eyebrow"><span class="eyebrow-dot"></span> GOOD FOOD IS CLOSER THAN YOU THINK</span>
+        <h1>Find your next<br><span>food spot.</span></h1>
+        <p>From Kota favourites to campus canteens, discover places serving up something delicious.</p>
+        <div class="listing-location"><span data-icon="map-pin" data-size="16"></span> Showing places around <strong>Kota, Rajasthan</strong></div>
+      </div>
+      <div class="listing-hero-art"><div class="listing-hero-emoji" data-icon="platter" data-size="96"></div><span class="hero-art-tag tag-one">Local favourites</span><span class="hero-art-tag tag-two">Campus bites</span><span class="hero-art-star" data-icon="sparkles" data-size="34"></span></div>
+    </section>
+
+    <section class="page-wrap explore-panel">
+      <div class="explore-topline"><div><span class="eyebrow">EXPLORE CRAVIO</span><h2>Where would you like to order from?</h2></div><span class="location-chip"><span data-icon="map-pin" data-size="13"></span> Kota</span></div>
+      <div class="outlet-tabs" role="tablist" aria-label="Choose outlet type">
+        <button class="outlet-tab active" data-type="all" role="tab" aria-selected="true"><span data-icon="sparkles" data-size="15"></span> All places</button>
+        <button class="outlet-tab" data-type="restaurant" role="tab" aria-selected="false"><span data-icon="utensils" data-size="15"></span> Restaurants</button>
+        <button class="outlet-tab" data-type="canteen" role="tab" aria-selected="false"><span data-icon="graduation-cap" data-size="15"></span> College canteens</button>
+      </div>
+      <div class="listing-controls">
+        <label class="listing-search"><span data-icon="search" data-size="17"></span><input id="outletSearch" type="search" placeholder="Search restaurants or canteens..." autocomplete="off"></label>
+        <button class="listing-filter-toggle" id="listingFilterToggle" aria-expanded="false"><span data-icon="sliders" data-size="15"></span> Filters</button>
+        <label class="sort-control">Cuisine <select id="cuisineFilter"><option value="all">All cuisines</option></select></label>
+        <label class="sort-control">Sort <select id="outletSort"><option value="recommended">Recommended</option><option value="rating">Top rated</option><option value="price">Lowest cost</option><option value="name">Name A–Z</option></select></label>
+      </div>
+      <div class="listing-filter-panel" id="listingFilterPanel" hidden>
+        <label><input type="checkbox" id="hasDelivery"> Delivery available</label>
+        <label><input type="checkbox" id="hasPickup"> Self-pickup available</label>
+        <label><input type="checkbox" id="budgetOnly"> Budget friendly (₹150 or less)</label>
+        <label class="rating-filter">Maximum starting price <select id="maxOutletPrice"><option value="999999">Any budget</option><option value="100">Up to ₹100</option><option value="150">Up to ₹150</option><option value="250">Up to ₹250</option><option value="500">Up to ₹500</option></select></label>
+        <label class="rating-filter">Minimum rating <select id="minOutletRating"><option value="0">Any</option><option value="4">4.0+</option><option value="4.5">4.5+</option></select></label>
+      </div>
+      <div class="results-heading"><div><h2 id="resultsTitle">All places near you</h2><p id="resultsCount">Showing all available outlets</p></div><span class="results-spark" data-icon="sparkles" data-size="24"></span></div>
+      <div class="outlet-grid" id="outletGrid" aria-live="polite"></div>
+      <div class="no-outlets" id="noOutlets" hidden><div class="empty-state-icon"><span data-icon="bag" data-size="28"></span></div><h3>No places found</h3><p>Try another search or remove a filter to see more options.</p><button id="resetListing" class="btn btn-sm">Clear all filters</button></div>
+    </section>
+
+    <section class="page-wrap pickup-callout">
+      <div class="pickup-icon"><span data-icon="bag" data-size="24"></span></div><div><span class="eyebrow">IN A HURRY?</span><h2>Order now. Pick up when ready.</h2><p>Choose self-pickup at checkout and collect your order directly from the outlet.</p></div><a href="index.html#canteens" class="pickup-link">How it works <span data-icon="arrow-right" data-size="13"></span></a>
+    </section>
+  </main>
+  <footer class="site-footer"><a class="brand footer-brand" href="index.html"><span class="brand-mark">C</span><span>cravio<span class="brand-dot">.</span></span></a><p>Your cravings, our priority.</p><span>© <span id="year"></span> Cravio. Built with a little extra flavour.</span></footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="js/listing.js"></script>
+</body>
+</html>

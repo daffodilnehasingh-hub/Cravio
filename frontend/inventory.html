@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management | Cravio</title>
+  <link rel="stylesheet" href="css/auth.css"><link rel="stylesheet" href="css/inventory.css">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="css/design-system.css" />
+  <script src="js/icons.js"></script>
+</head>
+<body>
+<main class="inventory-shell">
+  <header class="inventory-header"><a class="brand" href="index.html">cravio<span>.</span></a><nav><a href="dashboard.html">Orders</a> · <a href="outlet-management.html">Menus</a></nav></header>
+  <section class="inventory-intro"><p class="eyebrow">STOCK CONTROL</p><h1>Inventory management</h1><p>Track food stock, update quantities and identify items that need restocking.</p></section>
+  <section class="inventory-summary" id="inventorySummary"><div class="summary-card">Loading inventory...</div></section>
+  <section class="inventory-toolbar"><div><h2>Menu stock</h2><p>Changes are applied immediately.</p></div><button id="refreshInventory" class="btn btn-sm"><span class="ci" data-icon="zap" data-size="14"></span>Refresh</button></section>
+  <p id="inventoryMessage" role="status"></p>
+  <div id="inventoryList" class="inventory-list">Loading...</div>
+  <p class="inventory-note">Stock is deducted when an order is placed or a Razorpay payment is pending. Stock is restored if an unpaid payment fails or an eligible order is cancelled. This protects items from being oversold during simultaneous checkouts.</p>
+</main>
+<script src="js/inventory.js"></script>
+</body></html>
