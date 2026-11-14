@@ -1,4 +1,4 @@
-# Cravio 🍔🍕
+# Cravio
 
 > **Modern Food Delivery & Campus Canteen Platform**  
 > Serving Kota, Rajasthan — tailored for students, local foodies, restaurants, and campus canteens.
@@ -9,19 +9,19 @@
 
 ---
 
-## 🌐 Live Application
+##  Live Application
 
 Explore the fully deployed, interactive web application:  
-👉 **[https://cravio-mu.vercel.app/](https://cravio-mu.vercel.app/)**
+ **[https://cravio-mu.vercel.app/](https://cravio-mu.vercel.app/)**
 
 * The application runs with client-side state management, responsive UI, dark/light mode toggle, and rich demo fallbacks for fast, zero-configuration exploration.
 * When paired with the Node.js + Express + MongoDB backend, it unlocks full end-to-end capabilities: JWT authentication, live Socket.IO delivery tracking, Cloudinary-powered student verifications, Razorpay checkout, kitchen display systems, and administrative control.
 
 ---
 
-## ✨ Features Overview
+##  Features Overview
 
-### 🎓 1. Customer Experience
+###  1. Customer Experience
 * **Restaurant & Campus Canteen Discovery**: Dedicated directories for popular city outlets and on-campus canteens (`restaurants.html`).
 * **Smart Search & Filters**: Filter by Veg, Non-Veg, Vegan, Snacks, Drinks, Street Food, Delivery vs. Pickup, and minimum rating.
 * **Dynamic Menu & Cart Drawer**: Interactive item counters, custom instructions, real-time bill calculations, and responsive cart drawer (`menu.html`).
@@ -35,17 +35,17 @@ Explore the fully deployed, interactive web application:
 * **Ratings & Reviews**: Verified order ratings and comments (`reviews.html`).
 * **Digital Receipts & Reorder**: Instant digital receipts (`receipt.html`) and single-click cart reorders.
 
-### 👨‍🍳 2. Vendor & Kitchen Management
+###  2. Vendor & Kitchen Management
 * **Kitchen Display System (KDS)**: Oldest-first order queue with stage filters (Placed, Accepted, Preparing, Ready) (`vendor-kitchen.html`).
 * **Preparation Time Controls**: Set prep estimates (1–240 minutes) with real-time target countdowns and overdue indicators.
 * **Menu & Inventory Control**: Toggle item availability, update prices, add new items, and execute bulk percentage price adjustments (`outlet-management.html`, `inventory.html`).
 * **Vendor Dashboard**: Outlet analytics, daily volume, revenue metrics, and active order management (`vendor-dashboard.html`).
 
-### 🛵 3. Delivery Partner Operations
+###  3. Delivery Partner Operations
 * **Delivery Dashboard**: View active assigned deliveries, pickup details, drop-off directions, and customer contact information (`delivery-dashboard.html`).
 * **Delivery Management**: Assign drivers, update delivery stages, and broadcast live coordinates (`delivery-management.html`).
 
-### 🛡️ 4. Admin Control Center
+###  4. Admin Control Center
 * **Unified Control Hub**: Centralized administration for outlets, users, orders, and platform settings (`admin-control.html`).
 * **Outlet Management**: Create, verify, and modify outlet profiles and menus (`admin-outlets.html`).
 * **Customer Management**: View registered customers, account status, loyalty points, and role assignments (`admin-customers.html`).
@@ -57,7 +57,7 @@ Explore the fully deployed, interactive web application:
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 | Layer | Technologies |
 |---|---|
@@ -72,7 +72,7 @@ Explore the fully deployed, interactive web application:
 
 ---
 
-## 📁 Repository Structure
+##  Repository Structure
 
 ```
 Cravio/
@@ -113,7 +113,7 @@ Cravio/
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Running the Frontend Locally
 
@@ -175,7 +175,7 @@ python -m http.server 5500
 
 ---
 
-## 📄 Application Pages Directory
+##  Application Pages Directory
 
 | Page | Path | Description |
 |---|---|---|
@@ -212,7 +212,7 @@ python -m http.server 5500
 
 ---
 
-## 🔄 Development Phases (Phases 1 – 39)
+##  Development Phases (Phases 1 – 39)
 
 <details>
 <summary><strong>Click to view full development history</strong></summary>
@@ -258,7 +258,7 @@ python -m http.server 5500
 
 ---
 
-## 🔒 Security & Best Practices
+##  Security & Best Practices
 
 * **Zero Plaintext Secrets**: All sensitive secrets (`JWT_SECRET`, database passwords, Razorpay keys, Cloudinary credentials) are strictly kept in environment variables (`.env`).
 * **Tamper-Proof Checkout**: Order prices and discounts are verified server-side using MongoDB menu records and secure calculation logic.
@@ -267,6 +267,6 @@ python -m http.server 5500
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the [MIT License](LICENSE).
