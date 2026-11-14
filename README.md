@@ -3,10 +3,6 @@
 > **Modern Food Delivery & Campus Canteen Platform**  
 > Serving Kota, Rajasthan — tailored for students, local foodies, restaurants, and campus canteens.
 
-[![Live Application](https://img.shields.io/badge/Live%20App-cravio--mu.vercel.app-ff5722?style=for-the-badge&logo=vercel)](https://cravio-mu.vercel.app/)
-[![GitHub Repo](https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github)](https://github.com/daffodilnehasingh-hub/Cravio)
-[![Stack](https://img.shields.io/badge/Stack-Vanilla%20JS%20%7C%20Node.js%20%7C%20Express%20%7C%20MongoDB-green?style=for-the-badge)](#tech-stack)
-
 ---
 
 ##  Live Application
