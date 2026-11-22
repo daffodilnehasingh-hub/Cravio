@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api";
 const token = localStorage.getItem("cravio-token");
 const container = document.getElementById("managedOrders");
 const message = document.getElementById("dashboardMessage");
@@ -28,8 +28,10 @@ async function checkAccess() {
   const data=await response.json();
   if (!response.ok) { logout(); return false; }
   if (!["admin","vendor"].includes(data.user.role)) {
-    container.innerHTML='<div class="empty-state"><span class="empty-state-icon"><span data-icon="shield-check" data-size="26"></span></span>This dashboard is only available to Cravio admins and vendors.</div>';
-    document.getElementById("roleLabel").textContent="Customer account";
+    const homeForRole={admin:"admin-control.html",vendor:"vendor-dashboard.html",delivery:"delivery-dashboard.html",customer:"customer-dashboard.html"}[data.user.role]||"customer-dashboard.html";
+    container.innerHTML=`<div class="empty-state"><span class="empty-state-icon"><span data-icon="shield-check" data-size="26"></span></span><span>This dashboard is only available to Cravio admins and vendors.</span> <a href="${homeForRole}">Go to your dashboard</a></div>`;
+    document.getElementById("roleLabel").textContent=`${data.user.role} account`;
+    document.querySelectorAll(".dashboard-stats,.quick-links,.dashboard-toolbar").forEach(el=>{el.hidden=true;});
     return false;
   }
   document.getElementById("roleLabel").textContent=`${data.user.role} dashboard`;

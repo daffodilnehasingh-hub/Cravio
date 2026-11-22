@@ -7,10 +7,11 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="css/design-system.css" />
   <script src="js/icons.js"></script>
+<script src="js/theme.js"></script>
 </head>
 <body>
 <main class="admin-shell">
-  <header class="topbar"><a class="brand" href="index.html">cravio<span>.</span></a><div><span id="adminIdentity">Admin Control Center</span><button id="logoutButton" class="btn-ghost btn-sm"><span class="ci" data-icon="log-out" data-size="14"></span>Log out</button></div></header>
+  <header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">C</span><span>cravio<span class="brand-dot">.</span></span></a><div><span id="adminIdentity">Admin Control Center</span><button id="logoutButton" class="btn-ghost btn-sm"><span class="ci" data-icon="log-out" data-size="14"></span>Log out</button></div></header>
   <section class="welcome"><p class="eyebrow">PLATFORM OPERATIONS</p><h1>Admin Control Center</h1><p>One place to monitor Cravio and open every management workspace.</p><div class="welcome-actions"><button id="refreshButton" class="btn btn-sm"><span class="ci" data-icon="zap" data-size="14"></span>Refresh overview</button><span id="lastUpdated">Loading platform data…</span></div><p id="dashboardMessage" role="status"></p></section>
   <section class="metrics" id="metricsGrid"><article class="metric">Loading overview…</article></section>
   <section class="section-heading"><div><h2>Management workspaces</h2><p>Jump directly to the tools used to run the platform.</p></div></section>
@@ -23,6 +24,7 @@
     <a class="workspace" href="admin-support.html"><span class="workspace-icon"><span data-icon="mail" data-size="20"></span></span><h3>Customer support</h3><p>Open customer tickets and manage support conversations.</p><span class="workspace-link">Open inbox <span data-icon="arrow-right" data-size="14"></span></span></a>
     <a class="workspace" href="admin-verifications.html"><span class="workspace-icon"><span data-icon="shield-check" data-size="20"></span></span><h3>Student verification</h3><p>Review student ID submissions and discount eligibility.</p><span class="workspace-link">Review submissions <span data-icon="arrow-right" data-size="14"></span></span></a>
     <a class="workspace" href="admin-coupons.html"><span class="workspace-icon"><span data-icon="ticket" data-size="20"></span></span><h3>Coupons & offers</h3><p>Create promotional codes and control active offers.</p><span class="workspace-link">Manage coupons <span data-icon="arrow-right" data-size="14"></span></span></a>
+    <a class="workspace" href="delivery-management.html"><span class="workspace-icon"><span data-icon="truck" data-size="20"></span></span><h3>Delivery partners</h3><p>Create delivery partner accounts, set availability and manage access.</p><span class="workspace-link">Manage partners <span data-icon="arrow-right" data-size="14"></span></span></a>
   </section>
   <section class="recent-panel"><div class="section-heading"><div><h2>Recent platform orders</h2><p>Latest orders across all outlets.</p></div><a href="dashboard.html">View all orders <span data-icon="arrow-right" data-size="14"></span></a></div><div class="table-wrap"><table><thead><tr><th>Order</th><th>Customer</th><th>Outlet</th><th>Amount</th><th>Status</th><th>Placed</th></tr></thead><tbody id="recentOrders"><tr><td colspan="6">Loading recent orders…</td></tr></tbody></table></div></section>
   <footer>Cravio Admin · Keep customer and payment information confidential.</footer>

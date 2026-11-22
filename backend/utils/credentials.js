@@ -1,7 +1,7 @@
 /* Placeholder-aware "is this credential real?" check (B2/B3).
    Example/placeholder values from .env.example must count as NOT configured so the
    API returns a clean 503 instead of calling the real gateway with a fake key. */
-const PLACEHOLDER_PATTERN = /your|placeholder|replace|example|changeme|fixme|todo|xxx+|sample/i;
+const PLACEHOLDER_PATTERN = /your|placeholder|replace|example|changeme|fixme|todo|xxx+|sample|demo/i;
 
 function isRealCredential(value) {
   if (typeof value !== "string") return false;

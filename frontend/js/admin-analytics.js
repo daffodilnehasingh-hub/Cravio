@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:5000/api";
+const API_BASE_URL=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api";
 const token = localStorage.getItem("cravio-token");
 const rangeSelect = document.getElementById("rangeSelect");
 const message = document.getElementById("analyticsMessage");
@@ -24,6 +24,7 @@ async function checkAccess() {
   if (!["admin", "vendor"].includes(data.user.role)) {
     message.textContent = "Analytics is available to admins and vendors only.";
     document.getElementById("metricGrid").innerHTML = "";
+    document.querySelectorAll(".analytics-controls,.analytics-grid,.restaurants-panel").forEach(el=>{el.hidden=true;});
     return false;
   }
   document.getElementById("roleLabel").textContent = `${data.user.role} analytics`;
@@ -82,6 +83,24 @@ function renderOutlets(outlets) {
     <span class="outlet-value">${money(outlet.orderValue)}</span></div>`
   ).join("") : '<p class="empty-note">No outlet activity in this period.</p>';
 }
+function renderRestaurants(outlets) {
+  const sorted = [...(outlets || [])].sort((a, b) => b.orders - a.orders);
+  const chart = document.getElementById("restaurantChart");
+  const tbody = document.getElementById("restaurantTable");
+  if (!sorted.length) {
+    chart.innerHTML = '<p class="empty-note">No restaurant orders in this period.</p>';
+    tbody.innerHTML = '<tr><td colspan="4" class="empty-cell">No restaurant activity in this period.</td></tr>';
+    return;
+  }
+  const max = Math.max(1, ...sorted.map(outlet => outlet.orders));
+  chart.innerHTML = sorted.map(outlet =>
+    `<div><div class="status-row"><span class="status-name">${escapeHtml(outlet.name)}</span><span class="status-count">${outlet.orders} orders</span></div>
+    <div class="status-track"><div class="status-fill" style="width:${outlet.orders / max * 100}%"></div></div></div>`
+  ).join("");
+  tbody.innerHTML = sorted.map((outlet, index) =>
+    `<tr><td>${index + 1}. ${escapeHtml(outlet.name)}${index === 0 ? ' <span class="top-tag">Most orders</span>' : ""}</td><td>${outlet.orders}</td><td>${money(outlet.orderValue)}</td><td>${outlet.itemsSold}</td></tr>`
+  ).join("");
+}
 async function loadAnalytics() {
   message.textContent = "";
   if (!await checkAccess()) return;
@@ -97,6 +116,7 @@ async function loadAnalytics() {
     renderStatuses(data.statusCounts || {});
     renderDishes(data.topDishes || []);
     renderOutlets(data.outlets || []);
+    renderRestaurants(data.outlets || []);
   } catch (error) {
     message.textContent = error.message || "Unable to load analytics.";
   }

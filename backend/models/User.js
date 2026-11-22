@@ -66,6 +66,8 @@ const userSchema = new mongoose.Schema(
     },
     studentIdImagePublicId: { type: String, select: false, default: undefined },
     studentIdImageFormat: { type: String, select: false, default: undefined },
+    studentIdImageData: { type: Buffer, select: false },
+    studentIdImageContentType: { type: String, select: false, default: "" },
     studentVerificationSubmittedAt: { type: Date, default: null },
     studentVerificationReviewedAt: { type: Date, default: null },
     studentVerificationReviewedBy: { type: mongoose.Schema.Types.ObjectId, ref: "User", default: null },

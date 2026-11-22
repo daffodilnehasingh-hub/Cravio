@@ -498,7 +498,14 @@ exports.assignDeliveryPartner = async (req, res, next) => {
 
 exports.getMyDeliveryOrders = async (req, res, next) => {
   try {
-    const orders = await Order.find({ deliveryPartner: req.user.id, fulfillmentType: "delivery", status: { $nin: ["delivered", "cancelled"] } })
+    const orders = await Order.find({
+      fulfillmentType: "delivery",
+      status: { $nin: ["delivered", "cancelled"] },
+      $or: [
+        { deliveryPartner: req.user.id },
+        { deliveryPartner: null, status: "ready" }
+      ]
+    })
       .populate("customer", "name phone").sort({ deliveryAssignedAt: -1 });
     res.json({ orders });
   } catch (error) { next(error); }
@@ -510,7 +517,21 @@ exports.updateDeliveryStatus = async (req, res, next) => {
     if (!["out_for_delivery", "delivered"].includes(status)) {
       return res.status(400).json({ message: "Delivery partners can set only Out for delivery or Delivered." });
     }
-    const order = await Order.findOne({ _id: req.params.id, deliveryPartner: req.user.id, fulfillmentType: "delivery" });
+    let order = await Order.findOne({ _id: req.params.id, fulfillmentType: "delivery" });
+    if (order && !order.deliveryPartner && status === "out_for_delivery" && order.status === "ready") {
+      const claimed = await Order.findOneAndUpdate(
+        { _id: req.params.id, deliveryPartner: null, status: "ready" },
+        { $set: { deliveryPartner: req.user.id, deliveryAssignedAt: new Date() } },
+        { new: true }
+      );
+      if (claimed) {
+        order = claimed;
+        await User.updateOne({ _id: req.user.id, role: "delivery" }, { $set: { deliveryAvailability: "busy" } });
+      }
+    }
+    if (order && order.deliveryPartner && String(order.deliveryPartner) !== String(req.user.id)) {
+      return res.status(403).json({ message: "This order is assigned to another delivery partner." });
+    }
     if (!order) return res.status(404).json({ message: "Assigned delivery order not found." });
     if (status === "out_for_delivery" && !["ready", "out_for_delivery"].includes(order.status)) {
       return res.status(400).json({ message: "The order must be marked ready before delivery starts." });

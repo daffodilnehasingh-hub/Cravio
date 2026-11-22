@@ -1,4 +1,4 @@
-const API="http://localhost:5000/api", token=localStorage.getItem("cravio-token");
+const API=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api", token=localStorage.getItem("cravio-token");
 const form=document.getElementById("ticketForm"), list=document.getElementById("ticketList"), msg=document.getElementById("supportMessage");
 if(!token) location.replace("login.html");
 const headers={Authorization:`Bearer ${token}`};

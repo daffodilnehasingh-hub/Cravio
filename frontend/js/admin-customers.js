@@ -1,4 +1,4 @@
-const API_BASE_URL="http://localhost:5000/api";
+const API_BASE_URL=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api";
 const token=localStorage.getItem("cravio-token");
 const $=id=>document.getElementById(id);
 let page=1,pages=1,selectedId=null,searchTimer=null;
@@ -15,7 +15,7 @@ async function api(path,options={}){
 async function checkAdmin(){
  if(!token){logout();return false;}
  const data=await api("/auth/me");
- if(data.user.role!=="admin"){ $("customerMessage").textContent="This workspace is restricted to administrators.";return false; }
+ if(data.user.role!=="admin"){ $("customerMessage").textContent="This workspace is restricted to administrators.";document.querySelectorAll(".add-user-panel,.customer-toolbar,.customer-layout").forEach(el=>{el.hidden=true;});return false; }
  return true;
 }
 async function loadCustomers(){
@@ -39,12 +39,13 @@ async function loadDetails(id){
   const data=await api(`/admin/customers/${encodeURIComponent(id)}`);
   const c=data.customer;
   $("customerDetails").innerHTML=`<div class="detail-head"><div><h2>${esc(c.name)}</h2><p>${esc(c.email)}</p></div><span class="pill ${c.isActive?"":"off"} badge ${c.isActive?"badge-green":"badge-red"}">${c.isActive?"Active":"Inactive"}</span></div>
-  <div class="detail-actions"><button id="toggleStatus" class="${c.isActive?"btn-danger btn":"btn btn-ghost"}">${c.isActive?"Deactivate account":"Activate account"}</button></div>
+  <div class="detail-actions"><button id="toggleStatus" class="${c.isActive?"btn-danger btn":"btn btn-ghost"}">${c.isActive?"Deactivate account":"Activate account"}</button><button id="removeUser" class="btn btn-danger">Remove account</button></div>
   <div class="summary-grid"><div class="summary-box"><span>Orders</span><strong>${data.summary.orders}</strong></div><div class="summary-box"><span>Total spent*</span><strong>${money(data.summary.totalSpent)}</strong></div></div>
   <div class="detail-info"><strong>Phone:</strong> ${esc(c.phone||"Not provided")}<br><strong>Email:</strong> ${c.emailVerified?"Verified":"Not verified"}<br><strong>Student status:</strong> ${esc(c.studentVerificationStatus.replaceAll("_"," "))}<br><strong>Joined:</strong> ${c.createdAt?new Date(c.createdAt).toLocaleDateString("en-IN"):"—"}</div>
   <div class="detail-orders"><h3>Recent order history</h3>${data.orders.length?data.orders.map(o=>`<article class="order-card"><div class="order-card-head"><strong>${esc(o.orderNumber)}</strong><strong>${money(o.total)}</strong></div><p>${esc(o.outletName)} · ${esc(o.status.replaceAll("_"," "))} · ${o.createdAt?new Date(o.createdAt).toLocaleDateString("en-IN"):""}</p><p>${esc(o.items.join(", "))}</p><small>${esc(o.paymentMethod)} · ${esc(o.paymentStatus)} · ${esc(o.fulfillmentType)}</small></article>`).join(""):'<p class="empty-state"><span class="empty-state-icon"><span data-icon="receipt" data-size="24"></span></span>No orders recorded for this customer.</p>'}</div>
   <p class="detail-info">*Total spent excludes cancelled orders. Only the latest 30 orders are displayed.</p>`;
   $("toggleStatus").addEventListener("click",()=>changeStatus(c.id,!c.isActive));
+  $("removeUser").addEventListener("click",()=>removeUser(c.id,c.name,c.email));
  }catch(error){$("customerDetails").innerHTML=`<p>${esc(error.message)}</p>`;}
 }
 async function changeStatus(id,isActive){
@@ -56,6 +57,27 @@ async function changeStatus(id,isActive){
   await loadCustomers();await loadDetails(id);
  }catch(error){$("customerMessage").textContent=error.message;}
 }
+async function removeUser(id,name,email){
+ if(!window.confirm(`Permanently remove the account for ${name} (${email})? This cannot be undone. Their past orders stay in the order history.`))return;
+ try{
+  const data=await api(`/admin/customers/${encodeURIComponent(id)}`,{method:"DELETE"});
+  $("customerMessage").textContent=data.message;
+  selectedId=null;
+  $("customerDetails").innerHTML='<div class="detail-placeholder"><span class="empty-state-icon"><span data-icon="user" data-size="26"></span></span><h2>Select a customer</h2><p>Customer profile, account status and recent orders will appear here.</p></div>';
+  await loadCustomers();
+ }catch(error){$("customerMessage").textContent=error.message;}
+}
+$("addUserForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ $("addUserMessage").textContent="";
+ const body=Object.fromEntries(new FormData(e.currentTarget).entries());
+ try{
+  const data=await api("/admin/customers",{method:"POST",body:JSON.stringify(body)});
+  document.getElementById("addUserForm").reset();
+  $("addUserMessage").textContent=`${data.message} They can sign in straight away.`;
+  page=1;await loadCustomers();
+ }catch(error){$("addUserMessage").textContent=error.message;}
+});
 function runSearch(){page=1;loadCustomers();}
 $("searchButton").addEventListener("click",runSearch);
 $("resetButton").addEventListener("click",()=>{$("searchInput").value="";$("statusFilter").value="all";page=1;loadCustomers();});

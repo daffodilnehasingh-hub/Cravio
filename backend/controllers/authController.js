@@ -66,9 +66,6 @@ exports.register = async (req, res, next) => {
       return res.status(409).json({ message: "An account with this email already exists." });
     }
 
-    // Delete the junk user if it exists (created by earlier test)
-    try { await User.deleteOne({ email: normalizedEmail, name: "not-an-email" }); } catch {}
-
     const hashedPassword = await bcrypt.hash(password, 12);
     const user = await User.create({
       name: String(name).trim(),
@@ -76,22 +73,15 @@ exports.register = async (req, res, next) => {
       phone: phone ? String(phone).trim() : "",
       password: hashedPassword,
       role: "customer",
-      emailVerified: false
+      emailVerified: true
     });
 
-    try {
-      await issueEmailOtp(user);
-    } catch (mailError) {
-      return res.status(503).json({
-        message: "Your account was created, but the verification email could not be sent. Configure email or try resending the code.",
-        email: user.email,
-        verificationRequired: true
-      });
-    }
+    // Email OTP verification removed 2026-11-14 (Sam): no SMTP is configured, so the code step only locked users out. Accounts are created verified and signed in at once. The verify-email endpoints stay in place for the legacy flow.
+    const token = createToken(user);
     return res.status(201).json({
-      message: "Account created. Check your email for the 6-digit verification code.",
-      email: user.email,
-      verificationRequired: true
+      message: "Account created. You are signed in.",
+      token,
+      user: safeUser(user)
     });
   } catch (error) {
     if (error.code === 11000) {
@@ -144,13 +134,10 @@ exports.verifyEmail = async (req, res, next) => {
     }
     const user = await User.findOne({ email }).select("+emailOtpHash +emailOtpExpiresAt +emailOtpLastSentAt +emailOtpAttempts");
     if (!user) return res.status(404).json({ message: "Account not found." });
-    // B6: check OTP first, then already-verified shortcut
+    // A8: validate the OTP itself BEFORE the already-verified shortcut, so a
+    // wrong code is a 400 even for an account that is already verified.
     if (!user.emailOtpHash || !user.emailOtpExpiresAt || user.emailOtpExpiresAt < new Date()) {
       return res.status(400).json({ message: "This code has expired. Request a new verification code." });
-    }
-    if (user.emailVerified) {
-      // OTP valid, but we already processed it; just return the verified state.
-      return res.json({ message: "Email is already verified. You can log in now." });
     }
     const submittedHash = hashOtp(otp);
     if (user.emailOtpAttempts >= 5) {
@@ -164,6 +151,10 @@ exports.verifyEmail = async (req, res, next) => {
       user.emailOtpAttempts += 1;
       await user.save();
       return res.status(400).json({ message: "Incorrect verification code." });
+    }
+    if (user.emailVerified) {
+      // OTP was correct, but the account is already verified; nothing to do.
+      return res.json({ message: "Email is already verified. You can log in now." });
     }
 
     user.emailVerified = true;

@@ -1,4 +1,4 @@
-const API_BASE_URL="http://localhost:5000/api";
+const API_BASE_URL=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api";
 const token=localStorage.getItem("cravio-token");
 const $=id=>document.getElementById(id);
 function esc(value){return String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
@@ -16,7 +16,7 @@ async function loadOverview(){
     const meResponse=await fetch(`${API_BASE_URL}/auth/me`,{headers:{Authorization:`Bearer ${token}`}});
     const me=await meResponse.json();
     if(!meResponse.ok){logout();return;}
-    if(me.user.role!=="admin"){$("dashboardMessage").textContent="This workspace is restricted to administrators.";return;}
+    if(me.user.role!=="admin"){const homeForRole={admin:"admin-control.html",vendor:"vendor-dashboard.html",delivery:"delivery-dashboard.html",customer:"customer-dashboard.html"}[me.user.role]||"customer-dashboard.html";$("dashboardMessage").innerHTML=`This workspace is restricted to administrators. <a href="${homeForRole}">Go to your dashboard</a>`;document.querySelectorAll("#metricsGrid,.workspace-grid,.recent-panel,.welcome-actions").forEach(el=>{el.hidden=true;});return;}
     $("adminIdentity").textContent=`Signed in as ${me.user.name||"Administrator"}`;
     const response=await fetch(`${API_BASE_URL}/analytics/admin-overview`,{headers:{Authorization:`Bearer ${token}`}});
     const data=await response.json();

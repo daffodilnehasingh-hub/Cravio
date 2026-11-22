@@ -1,4 +1,4 @@
-const API="http://localhost:5000/api",token=localStorage.getItem("cravio-token"),$=id=>document.getElementById(id);
+const API=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api",token=localStorage.getItem("cravio-token"),$=id=>document.getElementById(id);
 let orders=[],outlets=[],summary=null;
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function statusBadgeClass(status){
@@ -14,7 +14,7 @@ async function loadWorkspace(){
  try{
   if(!token){logout();return;}
   const me=await api("/auth/me");
-  if(me.user.role!=="vendor"){$("vendorMessage").textContent="This workspace is available to vendor accounts only.";return;}
+  if(me.user.role!=="vendor"){const homeForRole={admin:"admin-control.html",vendor:"vendor-dashboard.html",delivery:"delivery-dashboard.html",customer:"customer-dashboard.html"}[me.user.role]||"customer-dashboard.html";$("vendorMessage").innerHTML=`This workspace is available to vendor accounts only. <a href="${homeForRole}">Go to your dashboard</a>`;document.querySelectorAll(".vendor-links,#vendorMetrics,.vendor-columns,.vendor-panel").forEach(el=>{el.hidden=true;});return;}
   $("vendorIdentity").textContent=`Welcome, ${me.user.name||"Vendor"}`;
   const [analytics,orderData,outletData]=await Promise.all([
    api("/analytics/summary?days=30"),api("/orders/manage"),api("/outlets/manage/all")

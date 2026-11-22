@@ -1,4 +1,4 @@
-const API="http://localhost:5000/api",token=localStorage.getItem("cravio-token"),list=document.getElementById("noticeList"),msg=document.getElementById("noticeMessage"),headers={Authorization:`Bearer ${token}`};
+const API=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api",token=localStorage.getItem("cravio-token"),list=document.getElementById("noticeList"),msg=document.getElementById("noticeMessage"),headers={Authorization:`Bearer ${token}`};
 if(!token)location.replace("login.html");
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 let knownUnread=null,soundOn=localStorage.getItem("cravio-order-sound")==="true";

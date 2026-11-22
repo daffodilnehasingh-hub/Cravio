@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api";
+const API=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api";
 const token = localStorage.getItem("cravio-token");
 const queue = document.getElementById("refundQueue");
 const message = document.getElementById("refundMessage");

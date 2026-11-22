@@ -1,5 +1,5 @@
 // Change this URL if your backend runs on a different host or port.
-const API_BASE_URL = "http://localhost:5000/api/auth";
+const API_BASE_URL=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api/auth";
 
 // Respect the visitor's saved theme (set by the theme toggle on other pages).
 try {
@@ -15,11 +15,22 @@ function showMessage(message, success = false, elementId = "formMessage") {
   box.classList.toggle("success", success);
 }
 
+// Each role lands on its own home after login (kept in sync with js/icons.js).
+const ROLE_HOME = {
+  admin: "admin-control.html",
+  vendor: "vendor-dashboard.html",
+  delivery: "delivery-dashboard.html",
+  customer: "customer-dashboard.html"
+};
+function homeForRole(role) {
+  return ROLE_HOME[role] || "customer-dashboard.html";
+}
+
 function saveSession(data) {
   // For this learning MVP only. Production apps should prefer Secure, HttpOnly, SameSite cookies.
   localStorage.setItem("cravio-token", data.token);
   localStorage.setItem("cravio-user", JSON.stringify(data.user));
-  window.location.href = "index.html";
+  window.location.href = homeForRole(data.user && data.user.role);
 }
 
 async function postAuth(endpoint, payload) {

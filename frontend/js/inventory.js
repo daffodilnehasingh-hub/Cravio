@@ -1,4 +1,4 @@
-const API = "http://localhost:5000/api";
+const API=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api";
 const token = localStorage.getItem("cravio-token");
 const list = document.getElementById("inventoryList");
 const message = document.getElementById("inventoryMessage");
@@ -10,7 +10,7 @@ async function loadInventory(){
   try{
     if(!token){logout();return;}
     const me=await request("/auth/me");
-    if(!["admin","vendor"].includes(me.user.role)){list.innerHTML='<div class="empty-inventory">Inventory management is available to admins and vendors only.</div>';return;}
+    if(!["admin","vendor"].includes(me.user.role)){list.innerHTML='<div class="empty-inventory">Inventory management is available to admins and vendors only.</div>';document.querySelectorAll(".inventory-toolbar,#inventorySummary,.inventory-note").forEach(el=>{el.hidden=true;});return;}
     const data=await request("/outlets/manage/inventory");
     const items=data.items||[];
     const low=items.filter(i=>i.stockQuantity<=i.lowStockThreshold).length;

@@ -50,3 +50,15 @@ body{margin:0;background:#fff8f4;color:#28211e;font-family:Arial,Helvetica,sans-
 .analytics-panel:hover{box-shadow:var(--shadow-1)}
 .back-dashboard a{display:inline-flex;align-items:center;gap:6px}
 
+/* ===== Restaurants panel: orders ranking (chart + table) ===== */
+.restaurants-panel{margin-top:16px}
+.restaurant-chart{display:grid;gap:12px;margin-bottom:18px}
+.restaurant-table-wrap{overflow-x:auto}
+.restaurant-table{width:100%;border-collapse:collapse;font-size:13px;text-align:left}
+.restaurant-table th,.restaurant-table td{padding:11px 10px;border-bottom:1px solid #f4eee9;white-space:nowrap}
+.restaurant-table th{color:#8a817b;font-size:11px;text-transform:uppercase;letter-spacing:.6px}
+.restaurant-table td{color:#554b45}
+.restaurant-table td:first-child{font-weight:700;white-space:normal}
+.top-tag{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:20px;background:#f36b32;color:#fff;font-size:10px;font-weight:700;vertical-align:middle}
+.restaurant-table td.empty-cell{color:#8a817b;text-align:center;font-weight:400}
+

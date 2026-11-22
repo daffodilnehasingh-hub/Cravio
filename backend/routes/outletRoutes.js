@@ -4,6 +4,7 @@ router.get("/admin/manage",protect,requireRole("admin"),admin.listOutlets);
 router.patch("/admin/:outletId/approval",protect,requireRole("admin"),admin.updateOutletApproval);
 router.patch("/admin/:outletId/availability",protect,requireRole("admin"),admin.updateOutletAvailability);
 router.patch("/admin/:outletId/vendor",protect,requireRole("admin"),admin.assignOutletVendor);
+router.delete("/:outletId",protect,requireRole("admin"),admin.deleteOutlet);
 router.get("/",c.publicList);router.get("/recommendations",c.publicRecommendations);router.get("/recommendations/me",protect,c.personalRecommendations);router.get("/:outletId/menu",c.publicMenu);
 router.get("/manage/inventory",protect,requireRole("admin","vendor"),c.inventoryList);
 router.get("/manage/all",protect,requireRole("admin","vendor"),c.manageList);

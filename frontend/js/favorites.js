@@ -1,4 +1,4 @@
-const API="http://localhost:5000/api",token=localStorage.getItem("cravio-token");
+const API=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api",token=localStorage.getItem("cravio-token");
 const list=document.getElementById("favoriteList"),message=document.getElementById("favoriteMessage");
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 async function load(){if(!token){location.replace("login.html");return;}try{const r=await fetch(`${API}/favorites`,{headers:{Authorization:`Bearer ${token}`}});const d=await r.json();if(!r.ok)throw Error(d.message||"Unable to load favorites.");

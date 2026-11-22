@@ -1,4 +1,4 @@
-const API="http://localhost:5000/api",token=localStorage.getItem("cravio-token"),$=id=>document.getElementById(id);
+const API=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api",token=localStorage.getItem("cravio-token"),$=id=>document.getElementById(id);
 const esc=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const money=v=>new Intl.NumberFormat("en-IN",{style:"currency",currency:"INR",maximumFractionDigits:0}).format(Number(v||0));
 let soundEnabled=localStorage.getItem("cravio-order-sound")==="true",knownUnread=null;

@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const Order = require("../models/Order");
 
@@ -92,5 +94,86 @@ exports.updateCustomerStatus = async (req, res, next) => {
     ).select("name email isActive");
     if (!customer) return res.status(404).json({ message: "Customer account not found." });
     res.json({ message: isActive ? "Customer account activated." : "Customer account deactivated.", customer });
+  } catch (error) { next(error); }
+};
+
+// Admin creates an account with any role. Validation and password hashing
+// mirror public registration exactly (same email regex, same bcrypt cost),
+// except the account starts verified and active: public sign-ups verify via
+// an emailed OTP, and SMTP is not configured yet, so admin-created accounts
+// skip OTP and can sign in immediately.
+exports.createUser = async (req, res, next) => {
+  try {
+    const { name, email, phone, password, role } = req.body;
+    if (!name || !email || !password) {
+      return res.status(400).json({ message: "Name, email and password are required." });
+    }
+    if (String(password).length < 8) {
+      return res.status(400).json({ message: "Password must contain at least 8 characters." });
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(String(email).trim())) {
+      return res.status(400).json({ message: "Please enter a valid email address." });
+    }
+    const userRole = role === undefined || role === "" ? "customer" : String(role);
+    if (!["customer", "vendor", "delivery", "admin"].includes(userRole)) {
+      return res.status(400).json({ message: "Choose a valid role: customer, vendor, delivery or admin." });
+    }
+    const normalizedEmail = String(email).trim().toLowerCase();
+    const existingUser = await User.findOne({ email: normalizedEmail });
+    if (existingUser) {
+      return res.status(409).json({ message: "An account with this email already exists." });
+    }
+    const hashedPassword = await bcrypt.hash(password, 12);
+    const user = await User.create({
+      name: String(name).trim(),
+      email: normalizedEmail,
+      phone: phone ? String(phone).trim() : "",
+      password: hashedPassword,
+      role: userRole,
+      emailVerified: true,
+      isActive: true
+    });
+    res.status(201).json({
+      message: `${userRole.charAt(0).toUpperCase() + userRole.slice(1)} account created for ${user.email}.`,
+      user: {
+        id: String(user._id), name: user.name, email: user.email, phone: user.phone || "",
+        role: user.role, isActive: user.isActive !== false,
+        emailVerified: Boolean(user.emailVerified), createdAt: user.createdAt
+      }
+    });
+  } catch (error) {
+    if (error.code === 11000) {
+      return res.status(409).json({ message: "An account with this email already exists." });
+    }
+    next(error);
+  }
+};
+
+// Hard delete of any user account. Guards: an admin cannot delete their own
+// account, and the last remaining admin account can never be deleted. Past
+// orders keep their customer reference and outlet snapshot, and admin views
+// already fall back gracefully for removed accounts.
+exports.deleteUser = async (req, res, next) => {
+  try {
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(404).json({ message: "User account not found." });
+    }
+    const user = await User.findById(req.params.id).select("name email role");
+    if (!user) return res.status(404).json({ message: "User account not found." });
+    if (String(user._id) === String(req.user.id)) {
+      return res.status(400).json({ message: "You cannot delete your own account." });
+    }
+    if (user.role === "admin") {
+      const adminCount = await User.countDocuments({ role: "admin" });
+      if (adminCount <= 1) {
+        return res.status(400).json({ message: "You cannot delete the last remaining admin account." });
+      }
+    }
+    await user.deleteOne();
+    res.json({
+      message: `Account ${user.email} removed.`,
+      user: { id: String(user._id), name: user.name, email: user.email, role: user.role }
+    });
   } catch (error) { next(error); }
 };

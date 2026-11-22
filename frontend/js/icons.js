@@ -124,15 +124,56 @@
   window.cravioIcon = svg;
   window.icon = svg;
 
+  /* Role-aware "Dashboard" links. Every page loads this file, so generic
+     dashboard anchors (nav bars, account menus, back links) are pointed at
+     the signed-in user's own role home. Labelled workspace links such as
+     "Vendor workspace" or "Order operations" are deliberately untouched. */
+  const ROLE_HOME = {
+    admin: "admin-control.html",
+    vendor: "vendor-dashboard.html",
+    delivery: "delivery-dashboard.html",
+    customer: "customer-dashboard.html"
+  };
+  const DASHBOARD_PAGES = ["dashboard.html", "customer-dashboard.html", "vendor-dashboard.html", "delivery-dashboard.html", "admin-control.html"];
+  const GENERIC_DASHBOARD_LABELS = ["dashboard", "mydashboard", "backtodashboard", "ordersdashboard"];
+
+  function cravioRoleHome() {
+    try {
+      const user = JSON.parse(localStorage.getItem("cravio-user") || "null");
+      return ROLE_HOME[user && user.role] || "customer-dashboard.html";
+    } catch (e) { return "customer-dashboard.html"; }
+  }
+
+  function applyRoleHomeLinks(root) {
+    let signedIn = false;
+    try { signedIn = !!localStorage.getItem("cravio-token"); } catch (e) { /* storage unavailable */ }
+    if (!signedIn) return; // logged out: keep the shipped defaults
+    const home = cravioRoleHome();
+    const scope = root || document;
+    const anchors = [];
+    if (scope.nodeType === 1 && scope.tagName === "A") anchors.push(scope);
+    if (scope.querySelectorAll) scope.querySelectorAll("a[href]").forEach(a => anchors.push(a));
+    anchors.forEach(a => {
+      const href = (a.getAttribute("href") || "").split(/[?#]/)[0];
+      if (!DASHBOARD_PAGES.includes(href)) return;
+      const label = (a.textContent || "").toLowerCase().replace(/[^a-z]/g, "");
+      if (!GENERIC_DASHBOARD_LABELS.includes(label)) return;
+      if (href !== home) a.setAttribute("href", home);
+    });
+  }
+  window.cravioRoleHome = cravioRoleHome;
+  window.cravioApplyRoleHomeLinks = applyRoleHomeLinks;
+
   function init() {
     upgradeDataIcons();
     walk(document.body);
+    applyRoleHomeLinks();
     const mo = new MutationObserver(records => {
       for (const r of records) {
         if (r.type === "childList") {
           r.addedNodes.forEach(n => {
             if (n.nodeType === 3) migrateTextNode(n);
-            else if (n.nodeType === 1) { upgradeDataIcons(n); walk(n); }
+            else if (n.nodeType === 1) { upgradeDataIcons(n); walk(n); applyRoleHomeLinks(n); }
           });
         } else if (r.type === "characterData") migrateTextNode(r.target);
       }

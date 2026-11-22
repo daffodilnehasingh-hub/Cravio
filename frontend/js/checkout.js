@@ -65,9 +65,13 @@ function setFulfilment(type) {
   if (!pickup && !canDeliver) { showToast("This outlet does not support delivery. Select pickup."); return; }
   $("addressCard").hidden = pickup;
   $("pickupNote").hidden = !pickup;
-  $("deliveryUnavailable").hidden = !(type === "delivery" && !canDeliver);
+  // UI2: the warning tracks the OUTLET's capability, not the selected
+  // fulfilment — a no-delivery outlet keeps the note visible on pickup too
+  // (it explains why delivery is unavailable); a delivery outlet never shows it.
+  $("deliveryUnavailable").hidden = canDeliver;
   $("summaryFulfilment").textContent = pickup ? "Self pickup" : "Home delivery";
   renderSummary();
+  renumberSteps();
 }
 async function applyCoupon() {
   const code=$("couponInput").value.trim().toUpperCase(), message=$("couponMessage");
@@ -75,7 +79,7 @@ async function applyCoupon() {
   const token=localStorage.getItem("cravio-token");
   const outletType=["2","4","6"].includes(String(outletId))?"canteen":"restaurant";
   try{
-    const response=await fetch("http://localhost:5000/api/coupons/validate",{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${token||""}`},body:JSON.stringify({code,subtotal:subtotal(),outletType})});
+    const response=await fetch((location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api/coupons/validate",{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${token||""}`},body:JSON.stringify({code,subtotal:subtotal(),outletType})});
     const data=await response.json();if(!response.ok)throw new Error(data.message||"Coupon could not be applied.");
     coupon=data.code;couponRate=data.discountType==="percentage"?data.discountValue/100:(subtotal()?data.discount/subtotal():0);
     message.textContent=`${data.description||"Coupon applied!"} You save ₹${Math.round(data.discount)}.`;
@@ -87,7 +91,7 @@ async function loadSavedAddresses() {
   const token = localStorage.getItem("cravio-token");
   if (!token) return;
   try {
-    const response = await fetch("http://localhost:5000/api/addresses", { headers: { Authorization: `Bearer ${token}` } });
+    const response = await fetch((location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api/addresses", { headers: { Authorization: `Bearer ${token}` } });
     if (!response.ok) return;
     const data = await response.json(); savedAddresses = data.addresses || [];
     const select = $("savedAddressSelect");
@@ -106,7 +110,7 @@ async function saveCurrentAddress() {
   const token = localStorage.getItem("cravio-token");
   const body = { label: "Home", fullName: $("customerName").value.trim(), phone: $("customerPhone").value.trim(), pincode: $("pincode").value.trim(), house: $("addressLine").value.trim(), area: $("landmark").value.trim() };
   try {
-    const response = await fetch("http://localhost:5000/api/addresses", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` }, body: JSON.stringify(body) });
+    const response = await fetch((location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api/addresses", { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` }, body: JSON.stringify(body) });
     const data = await response.json(); if (!response.ok) throw new Error(data.message || "Could not save address.");
     showToast("Order placed! Address saved for next time.");
   } catch (error) { showToast(`Order placed, but address was not saved: ${error.message}`); }
@@ -155,7 +159,7 @@ async function placeOrder() {
   const button = $("placeOrder"), originalHTML = button.innerHTML;
   button.disabled = true; button.textContent = paymentMethod === "razorpay" ? "Preparing secure payment..." : "Placing order...";
   try {
-    const response = await fetch("http://localhost:5000/api/orders", {
+    const response = await fetch((location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api/orders", {
       method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
       body: JSON.stringify(payload)
     });
@@ -181,7 +185,7 @@ async function placeOrder() {
         theme: { color: "#ef6b35" },
         handler: async function (paymentResult) {
           try {
-            const verifyResponse = await fetch("http://localhost:5000/api/orders/payment/verify", {
+            const verifyResponse = await fetch((location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api/orders/payment/verify", {
               method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
               body: JSON.stringify({ orderId: data.order._id, ...paymentResult })
             });
@@ -195,7 +199,7 @@ async function placeOrder() {
           }
         },
         modal: { ondismiss: function () {
-          fetch("http://localhost:5000/api/orders/payment/fail", {
+          fetch((location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api/orders/payment/fail", {
             method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
             body: JSON.stringify({ orderId: data.order._id })
           }).catch(() => {});
@@ -205,7 +209,7 @@ async function placeOrder() {
       };
       const checkout = new Razorpay(options);
       checkout.on("payment.failed", function (event) {
-        fetch("http://localhost:5000/api/orders/payment/fail", {
+        fetch((location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api/orders/payment/fail", {
           method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
           body: JSON.stringify({ orderId: data.order._id })
         }).catch(() => {});
@@ -279,8 +283,22 @@ if (outletId) {
   $("placeOrder").disabled = true;
   showToast("No outlet selected");
 }
-// B9: step badge reflects the 4 checkout steps (fulfilment → address → offers → payment)
-$("step-pill").textContent = "STEP 4 OF 4";
+// UI3: number only the visible steps — on pickup the address card hides, so
+// the visible sequence must renumber (1,2,3) instead of jumping 1 → 3 → 4,
+// and the pill must match. The pill is a class, not an id: the old
+// $("step-pill") lookup returned null and threw, which stopped
+// loadSavedAddresses() below from ever running.
+function renumberSteps() {
+  let n = 0;
+  document.querySelectorAll(".checkout-card").forEach(card => {
+    if (card.hidden) return;
+    const badge = card.querySelector(".step-number:not(.step-number-gold)");
+    if (badge) badge.textContent = ++n;
+  });
+  const pill = document.querySelector(".step-pill");
+  if (pill) pill.textContent = `STEP ${n} OF ${n}`;
+}
+renumberSteps();
 renderSummary();
 
 

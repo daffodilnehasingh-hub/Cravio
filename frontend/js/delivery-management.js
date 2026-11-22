@@ -1,4 +1,4 @@
-const API="http://localhost:5000/api",token=localStorage.getItem("cravio-token");
+const API=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api",token=localStorage.getItem("cravio-token");
 const list=document.getElementById("partnerList"),message=document.getElementById("partnerMessage");
 function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
 function logout(){localStorage.removeItem("cravio-token");localStorage.removeItem("cravio-user");location.replace("login.html");}

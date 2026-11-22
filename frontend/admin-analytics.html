@@ -9,11 +9,12 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="css/design-system.css" />
   <script src="js/icons.js"></script>
+<script src="js/theme.js"></script>
 </head>
 <body>
   <main class="analytics-shell">
     <header class="analytics-header">
-      <a class="brand" href="index.html">cravio<span>.</span></a>
+      <a class="brand" href="index.html"><span class="brand-mark">C</span><span>cravio<span class="brand-dot">.</span></span></a>
       <div class="header-actions"><span id="roleLabel">Analytics</span><button id="logoutButton">Log out</button></div>
     </header>
     <section class="analytics-intro">
@@ -51,6 +52,14 @@
         <div class="panel-heading"><div><h2>Outlet performance</h2><p>Order value and items sold by outlet</p></div></div>
         <div id="outletPerformance" class="outlet-list"></div>
       </article>
+    </section>
+    <section class="analytics-panel restaurants-panel">
+      <div class="panel-heading"><div><h2>Restaurants</h2><p>Every restaurant ranked by orders in the selected period — busiest first</p></div></div>
+      <div id="restaurantChart" class="restaurant-chart"><p>Loading chart...</p></div>
+      <div class="restaurant-table-wrap"><table class="restaurant-table">
+        <thead><tr><th>Restaurant</th><th>Orders</th><th>Revenue</th><th>Items sold</th></tr></thead>
+        <tbody id="restaurantTable"></tbody>
+      </table></div>
     </section>
     <p class="analytics-footnote">Order value excludes cancelled orders. Online collections include only payments verified as paid through Razorpay. Cash and pay-at-outlet collections are not represented as collected revenue.</p>
     <p class="back-dashboard"><a href="dashboard.html"><span class="ci icon-flip" data-icon="arrow-right" data-size="14"></span> Back to order dashboard</a></p>

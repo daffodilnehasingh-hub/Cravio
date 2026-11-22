@@ -1,4 +1,6 @@
-const API_BASE_URL = "http://localhost:5000/api/student-verification";
+const API_BASE_URL=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api/student-verification";
+const API_ORIGIN=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"");
+function imageSrc(u){return u&&u.startsWith("/")?API_ORIGIN+u:u;}
 const token = localStorage.getItem("cravio-token");
 const queue = document.getElementById("verificationQueue");
 const message = document.getElementById("adminMessage");
@@ -26,7 +28,7 @@ async function loadQueue() {
       <p>Submitted: ${escapeHtml(new Date(v.submittedAt).toLocaleString("en-IN"))}</p>
       <input class="review-reason" type="text" maxlength="300" placeholder="Reason (required only when rejecting)">
       <div class="review-actions"><button type="button" class="btn btn-sm" data-decision="approved">Approve</button><button type="button" class="reject btn-danger btn-sm" data-decision="rejected">Reject</button></div></div>
-      <div><img src="${escapeHtml(v.imageUrl)}" alt="Submitted student ID for ${escapeHtml(v.name)}"></div>
+      <div><img src="${escapeHtml(imageSrc(v.imageUrl))}" alt="Submitted student ID for ${escapeHtml(v.name)}"></div>
     </article>`).join("");
     queue.querySelectorAll("button[data-decision]").forEach(button=>button.addEventListener("click",review));
   } catch(error) { queue.textContent=error.message||"Unable to load review queue."; }

@@ -8,7 +8,7 @@ let outlets = [
 ];
 
 const params = new URLSearchParams(window.location.search);
-const API="http://localhost:5000/api";
+const API=(location.hostname==="localhost"||location.hostname==="127.0.0.1"?"http://localhost:5000":"")+"/api";
 const token=localStorage.getItem("cravio-token");
 const state = { type: params.get("type") || "all", query: (params.get("q")||"").trim().toLowerCase(), cuisine:"all", favorites:new Set(), summaries:{} };
 async function loadUserOutletData(){
@@ -57,7 +57,7 @@ function renderOutlets() {
     const cuisineMatches=state.cuisine==="all"||String(outlet.cuisine||"").toLowerCase().includes(state.cuisine.toLowerCase());
     return (state.type === "all" || outlet.type === state.type) && text.includes(state.query) && cuisineMatches &&
       (!delivery || outlet.delivery) && (!pickup || outlet.pickup) &&
-      (!budget || outlet.price <= 150) && outlet.price<=maxPrice && rating >= minRating;
+      (!budget || outlet.price <= maxPrice) && outlet.price<=maxPrice && rating >= minRating;
   });
   if (sort === "rating") results.sort((a, b) => Number(state.summaries[b.id]?.averageRating||b.rating||0) - Number(state.summaries[a.id]?.averageRating||a.rating||0));
   if (sort === "price") results.sort((a, b) => a.price - b.price);
@@ -68,7 +68,7 @@ function renderOutlets() {
   grid.innerHTML = results.map(outlet => `
     <article class="outlet-card">
       <div class="outlet-image-wrap">
-        <img class="outlet-image" src="${outlet.image}" alt="${outlet.name}" loading="lazy">
+        <img class="outlet-image" src="${outlet.image}" alt="${outlet.name}" loading="lazy" onerror="this.onerror=null;this.src='images/placeholder.svg'">
         <span class="outlet-type">${outlet.type === "canteen" ? icon("graduation-cap", 12) + " COLLEGE CANTEEN" : icon("utensils", 12) + " RESTAURANT"}</span>
         <span class="outlet-offer">${outlet.offer}</span>
         <button class="outlet-favorite ${state.favorites.has(String(outlet.id))?"saved":""}" data-favorite="${outlet.id}" aria-label="Toggle favorite">${icon("heart", 16)}</button>

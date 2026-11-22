@@ -96,3 +96,23 @@ exports.assignOutletVendor = async (req, res, next) => {
     } });
   } catch (error) { next(error); }
 };
+
+// Hard delete. Menu items are embedded in the outlet document, so they are
+// removed with it. Orders keep their own outlet snapshot (id + name), so
+// order history and analytics for past orders are unaffected.
+exports.deleteOutlet = async (req, res, next) => {
+  try {
+    const outlet = await Outlet.findOne({ outletId: req.params.outletId });
+    if (!outlet) return res.status(404).json({ message: "Outlet not found." });
+    // Keep vendor accounts consistent: drop the removed outlet from their lists.
+    await User.updateMany(
+      { managedOutletIds: outlet.outletId },
+      { $pull: { managedOutletIds: outlet.outletId } }
+    );
+    await outlet.deleteOne();
+    res.json({
+      message: `Outlet "${outlet.name}" removed.`,
+      outlet: { outletId: outlet.outletId, name: outlet.name }
+    });
+  } catch (error) { next(error); }
+};

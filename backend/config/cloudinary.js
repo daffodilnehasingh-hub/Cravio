@@ -7,10 +7,14 @@ cloudinary.config({
   secure: true
 });
 
+const { areRealCredentials } = require("../utils/credentials");
+
 function isConfigured() {
-  return Boolean(
-    process.env.CLOUDINARY_CLOUD_NAME &&
-    process.env.CLOUDINARY_API_KEY &&
+  // Placeholder/demo values (e.g. the public "demo" cloud) count as NOT
+  // configured so callers return a clean 503 instead of a failed upload 500.
+  return areRealCredentials(
+    process.env.CLOUDINARY_CLOUD_NAME,
+    process.env.CLOUDINARY_API_KEY,
     process.env.CLOUDINARY_API_SECRET
   );
 }

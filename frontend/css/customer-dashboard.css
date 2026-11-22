@@ -9,7 +9,7 @@
 .unread-badge{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:12px;background:var(--c-orange);color:#fff;font-size:10px;font-weight:800;font-variant-numeric:tabular-nums}
 .welcome{display:flex;justify-content:space-between;align-items:center;margin:30px 0 18px;padding:27px 30px;border-radius:var(--r-xl);background:linear-gradient(120deg,#2b211e,#69432f);color:white}
 .eyebrow{font-size:10px;letter-spacing:1.5px;color:#ffb48b;font-weight:900}
-.welcome h1{font-size:clamp(27px,5vw,42px);margin:7px 0}
+.welcome h1{font-size:clamp(27px,5vw,42px);margin:7px 0;color:#fff}
 .welcome p{margin:0;color:#e8d9d0}
 .welcome-emoji{width:86px;height:86px;flex:none;display:grid;place-items:center;border-radius:26px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16)}
 .welcome-emoji .cravio-svg{color:#ffb48b}

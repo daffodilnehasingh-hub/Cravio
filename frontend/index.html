@@ -20,13 +20,13 @@
     </a>
     <nav class="main-nav" aria-label="Main navigation">
       <a class="nav-link active" href="#home">Home</a>
-      <a class="nav-link" href="restaurants.html">Restaurants</a>
-      <a class="nav-link" href="restaurants.html?type=canteen">College canteens</a>
+      <a class="nav-link" href="restaurants.html">Explore</a>
       <a class="nav-link" href="#offers">Offers</a>
     <a class="cravio-account-link" href="customer-dashboard.html">My Dashboard</a><a class="cravio-account-link" href="profile.html">My Account</a></nav>
     <div class="header-actions">
       <button class="icon-button theme-toggle" id="themeToggle" aria-label="Toggle colour theme" title="Toggle theme"><span data-icon="moon"></span></button>
       <a class="icon-button" href="favorites.html" aria-label="Favorites" title="Favorites"><span data-icon="heart"></span></a>
+      <button class="cart-header" id="cartJump" type="button" aria-label="Open cart"><span data-icon="bag" data-size="16"></span> <span id="headerCartCount">0</span></button>
       <button class="profile-button"><span class="avatar"><span data-icon="user" data-size="17"></span></span><span class="profile-label">Guest</span></button>
     </div>
   </header>
@@ -57,7 +57,7 @@
       <div class="hero-art" aria-label="Food illustration">
         <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
         <div class="hero-food-card">
-          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85" alt="Delicious burger with fresh ingredients">
+          <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=85" alt="Delicious burger with fresh ingredients" onerror="this.onerror=null;this.src='images/placeholder.svg'">
           <div class="floating-rating"><span data-icon="star" data-size="15"></span> 4.8 <small>Top rated</small></div>
           <div class="floating-note"><span class="note-icon" data-icon="arrow-up-right" data-size="15"></span><span><strong>Freshly made</strong><small>Happiness in every bite</small></span></div>
         </div>
@@ -108,5 +108,6 @@
   <footer class="site-footer"><a class="brand footer-brand" href="#"><span class="brand-mark">C</span><span>cravio<span class="brand-dot">.</span></span></a><p>Your cravings, our priority.</p><span>© <span id="year"></span> Cravio. Built with a little extra flavour.</span></footer>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
   <script src="js/app.js"></script>
+  <script src="js/cart-widget.js"></script>
 </body>
 </html>

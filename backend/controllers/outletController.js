@@ -1,5 +1,6 @@
 const Outlet=require("../models/Outlet");
 const Order=require("../models/Order");
+const mongoose=require("mongoose");
 const cleanId=v=>String(v||"").trim();
 exports.publicList=async(req,res,next)=>{try{const outlets=await Outlet.find({isActive:true,$or:[{approvalStatus:"approved"},{approvalStatus:{$exists:false}}]}).select("-managedBy");res.json({outlets})}catch(e){next(e)}};
 exports.publicMenu=async(req,res,next)=>{try{const outlet=await Outlet.findOne({outletId:req.params.outletId,isActive:true,$or:[{approvalStatus:"approved"},{approvalStatus:{$exists:false}}]}).select("-managedBy");if(!outlet)return res.status(404).json({message:"Outlet not found."});outlet.items.forEach(item=>{if(Number(item.stockQuantity||0)<=0)item.available=false});res.json({outlet})}catch(e){next(e)}};
@@ -16,7 +17,9 @@ exports.updateStock=async(req,res,next)=>{try{const outlet=await Outlet.findOne(
 // Homepage recommendations are built from real outlet menus and completed order history.
 async function getRecommendedItems(customerId=null){
   const match={status:{$nin:["cancelled","payment_pending"]}};
-  if(customerId) match.customer=customerId;
+  // Aggregate $match does not cast strings, so convert the id explicitly or
+  // a personalised query silently matches no orders (C5).
+  if(customerId&&mongoose.isValidObjectId(customerId)) match.customer=new mongoose.Types.ObjectId(customerId);
   const sold=await Order.aggregate([
     {$match:match},
     {$unwind:"$items"},
@@ -48,7 +51,7 @@ async function getRecommendedItems(customerId=null){
   return results;
 }
 exports.publicRecommendations=async(req,res,next)=>{try{const recommendations=await getRecommendedItems();res.json({recommendations,mode:"popular"})}catch(e){next(e)}};
-exports.personalRecommendations=async(req,res,next)=>{try{const recommendations=await getRecommendedItems(req.user._id);res.json({recommendations,mode:recommendations.some(x=>x.reason==="Based on your order history")?"personalized":"popular"})}catch(e){next(e)}};
+exports.personalRecommendations=async(req,res,next)=>{try{const recommendations=await getRecommendedItems(req.user.id);res.json({recommendations,mode:recommendations.some(x=>x.reason==="Based on your order history")?"personalized":"popular"})}catch(e){next(e)}};
 
 
 // Apply a validated percentage price adjustment to selected menu items.

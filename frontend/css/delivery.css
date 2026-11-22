@@ -17,3 +17,5 @@
 .job-card:hover{box-shadow:var(--shadow-1)}
 .empty-state{margin:16px 0;border:1px dashed var(--line,#ddd);border-radius:var(--r-lg);padding:28px;text-align:center;color:var(--muted,#777)}
 
+.job-hint{margin:12px 0 0;font-size:.88rem;color:var(--muted,#777)}
+.job-waiting{font-size:.92rem;color:var(--muted,#777);align-self:center}

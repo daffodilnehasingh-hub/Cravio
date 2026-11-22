@@ -8,3 +8,13 @@ a{color:#e45e32;text-decoration:none;font-size:13px}.topbar>div{display:flex;ali
 .pill{display:inline-flex;align-items:center}
 .customer-details{transition:box-shadow var(--t-med)}
 
+/* ===== Add user panel ===== */
+.add-user-panel{background:white;border:1px solid #e8e9ed;border-radius:14px;padding:18px;margin:0 0 16px}
+.add-user-panel h2{margin:0 0 5px;font-size:19px}
+.add-user-panel p{margin:0 0 14px;color:#7a808c;font-size:13px}
+.add-user-form{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.add-user-form input,.add-user-form select{min-width:0;padding:11px;border:1px solid #dfe2e7;border-radius:9px;background:white;color:#252a33}
+.add-user-form button{white-space:nowrap}
+#addUserMessage{font-size:13px;color:#237447;min-height:18px;margin:12px 0 0}
+@media(max-width:760px){.add-user-form{grid-template-columns:1fr 1fr}}
+

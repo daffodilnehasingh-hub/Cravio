@@ -7,8 +7,39 @@
 [hidden] { display: none !important; }
 
 /* B13: dark hero headings — ensure white text on dark backgrounds */
-.welcome h1, .track-hero h1,
-.welcome .page-wrap h1, .track-hero .page-wrap h1 { color: white; }
+:root[data-theme="dark"] .welcome h1 { color: white; }
+
+/* UI5: shared site-header pieces for inner pages. styles.css defines these
+   for the 5 pages that load it; inner pages only load this sheet, so the
+   same component styles live here too (same values as styles.css). */
+.brand-mark { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 11px 11px 11px 4px; color: white; background: var(--orange, #f36b32); font-size: 21px; }
+.brand-dot { color: var(--orange, #f36b32); }
+a.brand { display: inline-flex; align-items: center; gap: 9px; }
+.nav-link { font-size: 13px; color: var(--muted, #6f655c); font-weight: 600; text-decoration: none; transition: color .2s; }
+.nav-link:hover, .nav-link.active { color: var(--orange, #f36b32); }
+.main-nav { display: flex; align-items: center; gap: 26px; }
+.site-header { min-height: 78px; padding: 10px max(5vw, calc((100vw - 1180px)/2)); display: flex; align-items: center; justify-content: space-between; gap: 28px; border-bottom: 1px solid var(--line, #eee5db); background: var(--bg, #fffdf9); position: sticky; top: 0; z-index: 10; }
+
+/* UI1: header cart button (same rule as menu.css) + shared cart widget
+   used on pages without the menu-page cart (index, restaurants). */
+.cart-header { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--line, #e8e2da); border-radius: 99px; padding: 9px 14px; background: var(--surface, #fff); color: var(--text, #25211e); font-size: 12px; font-weight: 800; cursor: pointer; transition: border-color var(--t-fast), color var(--t-fast), transform var(--t-fast); }
+.cart-header:hover { border-color: var(--c-orange); color: var(--c-orange); transform: translateY(-1px); }
+.cw-backdrop { position: fixed; inset: 0; z-index: 60; background: rgba(30, 20, 14, .45); display: flex; align-items: flex-start; justify-content: center; padding: 6vh 16px 16px; }
+.cw-modal { width: min(480px, 100%); max-height: 84vh; overflow: auto; background: var(--surface, #fff); color: var(--text, #25211e); border-radius: 18px; padding: 22px; box-shadow: var(--shadow-3); }
+.cw-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.cw-heading h2 { margin: 2px 0 0; }
+.cw-close { display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid var(--line, #e8e2da); border-radius: 50%; background: transparent; color: inherit; cursor: pointer; }
+.cw-outlet { margin: 6px 0 0; color: var(--muted, #6f655c); font-size: 12.5px; font-weight: 600; }
+.cw-lines { display: grid; gap: 10px; margin: 16px 0; }
+.cw-line { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid var(--line, #e8e2da); border-radius: var(--r-md); }
+.cw-line strong { display: block; font-size: 13.5px; }
+.cw-line small { color: var(--muted, #6f655c); font-size: 12px; }
+.cw-actions { display: inline-flex; align-items: center; gap: 9px; }
+.cw-actions button { display: grid; place-items: center; width: 26px; height: 26px; border: 1px solid var(--line, #e8e2da); border-radius: 50%; background: transparent; color: inherit; cursor: pointer; }
+.cw-empty { margin: 0; color: var(--muted, #6f655c); font-size: 13.5px; }
+.cw-total { display: flex; align-items: center; justify-content: space-between; padding-top: 12px; border-top: 1px dashed var(--line, #e8e2da); font-size: 14px; }
+.cw-checkout { width: 100%; margin-top: 14px; display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 16px; border: 0; border-radius: 99px; background: var(--c-orange); color: white; font-size: 13.5px; font-weight: 800; cursor: pointer; }
+.cw-checkout:disabled { opacity: .55; cursor: not-allowed; }
 
 :root {
   color-scheme: light;
@@ -165,3 +196,44 @@ input[type="checkbox"], input[type="radio"] { accent-color: var(--c-orange); wid
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
 }
+
+/* Dark bridge (2026-11-14): page stylesheets that hardcode light surfaces
+   ignore [data-theme="dark"]. This shared sheet loads last, so these
+   higher-specificity rules give every page a working dark skin. */
+:root[data-theme="dark"] body { background: #17140f; color: #f2ece3; }
+:root[data-theme="dark"] .add-user-panel,
+:root[data-theme="dark"] .analytics-controls,
+:root[data-theme="dark"] .analytics-panel,
+:root[data-theme="dark"] .create-panel,
+:root[data-theme="dark"] .customer-details,
+:root[data-theme="dark"] .customer-list-panel,
+:root[data-theme="dark"] .customer-row,
+:root[data-theme="dark"] .inventory-row,
+:root[data-theme="dark"] .kitchen-controls,
+:root[data-theme="dark"] .managed-card,
+:root[data-theme="dark"] .metric,
+:root[data-theme="dark"] .metric-card,
+:root[data-theme="dark"] .order-card,
+:root[data-theme="dark"] .order-filters,
+:root[data-theme="dark"] .outlet-card,
+:root[data-theme="dark"] .outlet-controls,
+:root[data-theme="dark"] .outlet-head,
+:root[data-theme="dark"] .partner-card,
+:root[data-theme="dark"] .partner-panel,
+:root[data-theme="dark"] .partner-stat,
+:root[data-theme="dark"] .rank-track,
+:root[data-theme="dark"] .recent-panel,
+:root[data-theme="dark"] .stat-card,
+:root[data-theme="dark"] .status,
+:root[data-theme="dark"] .status-form,
+:root[data-theme="dark"] .status-track,
+:root[data-theme="dark"] .summary-box,
+:root[data-theme="dark"] .summary-card,
+:root[data-theme="dark"] .vendor-order-actions,
+:root[data-theme="dark"] .vendor-panel,
+:root[data-theme="dark"] .vendor-status,
+:root[data-theme="dark"] .verification-card,
+:root[data-theme="dark"] .workspace { background: #231d15; border-color: #3a332a; color: #f2ece3; }
+:root[data-theme="dark"] input, :root[data-theme="dark"] select, :root[data-theme="dark"] textarea { background: #1d1812; color: #f2ece3; border-color: #453a2f; }
+:root[data-theme="dark"] th, :root[data-theme="dark"] td { border-color: #3a332a; }
+:root[data-theme="dark"] .brand { color: #f2ece3; }

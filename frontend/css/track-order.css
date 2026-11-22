@@ -5,7 +5,7 @@
 .track-shell nav{font-size:13px}
 .track-shell nav a:hover{color:var(--c-orange)}
 .track-hero{display:flex;justify-content:space-between;align-items:center;padding:25px 28px;border-radius:var(--r-xl);background:linear-gradient(120deg,#2c211d,#69432f);color:white}
-.track-hero h1{font-size:clamp(30px,5vw,43px);margin:6px 0}
+.track-hero h1{font-size:clamp(30px,5vw,43px);margin:6px 0;color:#fff}
 .track-hero p{color:#f0dcd0;margin:0}
 .eyebrow{font-size:10px;letter-spacing:1.5px;color:#ffb48b;font-weight:900}
 .hero-emoji{width:86px;height:86px;flex:none;display:grid;place-items:center;border-radius:26px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16)}
